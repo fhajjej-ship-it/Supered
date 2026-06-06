@@ -176,6 +176,7 @@ h3 {
 }
 
 .workflow,
+.proof,
 .install {
   border-top: 1px solid var(--line);
   padding: 68px clamp(24px, 6vw, 84px);
@@ -209,10 +210,45 @@ h3 {
 }
 
 .steps p,
+.proof p,
 .install p {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.45;
+}
+
+.proof-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 30px;
+}
+
+.proof-grid a {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  min-height: 150px;
+  padding: 22px;
+}
+
+.proof-grid a:hover {
+  border-color: var(--teal);
+}
+
+.proof-grid span {
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.proof-grid strong {
+  color: var(--navy);
+  font-size: 22px;
+  line-height: 1.15;
 }
 
 .install {
@@ -266,6 +302,10 @@ code {
   }
 
   .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-grid {
     grid-template-columns: 1fr;
   }
 

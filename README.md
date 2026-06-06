@@ -63,6 +63,25 @@ Host-specific notes:
 
 Marketplace readiness lives in [docs/marketplace-checklist.md](docs/marketplace-checklist.md).
 
+## Which Skill Should I Use?
+
+Use [docs/which-skill.md](docs/which-skill.md) as the quick router:
+
+- unclear task: `shape-the-task`
+- clear but large task: `make-a-map`
+- planned implementation: `build-in-slices`
+- broken or flaky behavior: `trace-the-fault`
+- completion claim: `prove-the-change`
+- commit, publish, or handoff: `ship-the-work`
+
+## Eval Pack
+
+Supered includes a public eval pack so the skills can be judged against realistic work instead of vibes.
+
+- [Scenario catalog](docs/evals/scenarios.json): 10 realistic coding-agent scenarios.
+- [Baseline results](docs/evals/baseline-results.json): scores across clarity, actionability, guardrails, evidence, and outcome.
+- [Eval report](docs/evals/README.md): how to use the scenarios to improve the skills.
+
 ## CLI
 
 ```bash

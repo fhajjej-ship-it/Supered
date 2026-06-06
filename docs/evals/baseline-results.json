@@ -1,0 +1,132 @@
+{
+  "product": "Supered",
+  "catalogVersion": "0.1",
+  "summary": {
+    "averageScore": 4.58,
+    "scenarioCount": 10,
+    "scoreScale": "1-5",
+    "method": "Maintainer review of the v0.2.0 Supered skill bodies against the scenario catalog. Scores are intentionally conservative until external user studies exist."
+  },
+  "results": [
+    {
+      "scenarioId": "S01",
+      "recommendedSkill": "shape-the-task",
+      "scores": {
+        "clarity": 5,
+        "actionability": 5,
+        "guardrails": 4,
+        "evidence": 4,
+        "outcome": 5
+      },
+      "notes": "The skill asks for users, constraints, assumptions, and acceptance signals before implementation, which directly prevents dashboard overreach. Evidence is strong but still depends on user confirmation."
+    },
+    {
+      "scenarioId": "S02",
+      "recommendedSkill": "make-a-map",
+      "scores": {
+        "clarity": 5,
+        "actionability": 5,
+        "guardrails": 5,
+        "evidence": 4,
+        "outcome": 5
+      },
+      "notes": "The mapping playbook fits multi-file auth work well because it forces affected areas, checkpoints, and verification commands before edits. External security review may still be needed."
+    },
+    {
+      "scenarioId": "S03",
+      "recommendedSkill": "build-in-slices",
+      "scores": {
+        "clarity": 4,
+        "actionability": 5,
+        "guardrails": 5,
+        "evidence": 4,
+        "outcome": 4
+      },
+      "notes": "The slice discipline prevents a settings redesign from swallowing the small save-confirmation task. The score is slightly lower because visual quality still needs domain judgment."
+    },
+    {
+      "scenarioId": "S04",
+      "recommendedSkill": "trace-the-fault",
+      "scores": {
+        "clarity": 5,
+        "actionability": 5,
+        "guardrails": 5,
+        "evidence": 5,
+        "outcome": 4
+      },
+      "notes": "The fault-tracing skill is strongest on this scenario: it demands symptom capture, hypotheses, probes, and proof before patches. The remaining risk is platform access to mobile Safari."
+    },
+    {
+      "scenarioId": "S05",
+      "recommendedSkill": "prove-the-change",
+      "scores": {
+        "clarity": 5,
+        "actionability": 4,
+        "guardrails": 5,
+        "evidence": 5,
+        "outcome": 5
+      },
+      "notes": "The verification skill explicitly blocks premature completion claims and requires fresh proof. Actionability is high, though the exact export check depends on the app's local tooling."
+    },
+    {
+      "scenarioId": "S06",
+      "recommendedSkill": "ship-the-work",
+      "scores": {
+        "clarity": 5,
+        "actionability": 5,
+        "guardrails": 5,
+        "evidence": 5,
+        "outcome": 5
+      },
+      "notes": "The shipping skill aligns directly with public release work: clean status, intended staging, verification, push, release, and public read-back. It is the best fit in the catalog."
+    },
+    {
+      "scenarioId": "S07",
+      "recommendedSkill": "using-supered",
+      "scores": {
+        "clarity": 4,
+        "actionability": 5,
+        "guardrails": 4,
+        "evidence": 4,
+        "outcome": 4
+      },
+      "notes": "The entrypoint helps route a messy request into a first useful workflow instead of trying everything. The score is lower because the request still requires product prioritization."
+    },
+    {
+      "scenarioId": "S08",
+      "recommendedSkill": "trace-the-fault",
+      "scores": {
+        "clarity": 5,
+        "actionability": 5,
+        "guardrails": 5,
+        "evidence": 5,
+        "outcome": 4
+      },
+      "notes": "CI recovery benefits from the same diagnosis discipline: start from logs, reproduce, isolate, then patch. Outcome depends on whether the CI failure can be reproduced locally."
+    },
+    {
+      "scenarioId": "S09",
+      "recommendedSkill": "make-a-map",
+      "scores": {
+        "clarity": 4,
+        "actionability": 5,
+        "guardrails": 4,
+        "evidence": 5,
+        "outcome": 4
+      },
+      "notes": "The map-and-slice combination handles migration risk well by separating schema, data, and route compatibility. Database-specific rollback details remain project dependent."
+    },
+    {
+      "scenarioId": "S10",
+      "recommendedSkill": "ship-the-work",
+      "scores": {
+        "clarity": 5,
+        "actionability": 4,
+        "guardrails": 5,
+        "evidence": 5,
+        "outcome": 4
+      },
+      "notes": "The handoff scenario is well covered because the skill values honest status over false completion. It needs local judgment about whether to commit partial work or leave notes only."
+    }
+  ]
+}

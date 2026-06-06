@@ -1,0 +1,212 @@
+{
+  "product": "Supered",
+  "version": "0.1",
+  "description": "A compact public catalog of realistic coding-agent scenarios for checking whether Supered skills are useful in practice.",
+  "scoring": {
+    "maxScore": 5,
+    "dimensions": [
+      "clarity",
+      "actionability",
+      "guardrails",
+      "evidence",
+      "outcome"
+    ],
+    "rubric": {
+      "1": "Absent or actively misleading.",
+      "2": "Present but too vague to guide reliable work.",
+      "3": "Usable with noticeable gaps or extra human correction.",
+      "4": "Strong enough for normal work with minor judgment required.",
+      "5": "Excellent: specific, safe, evidence-driven, and ready to apply."
+    }
+  },
+  "scenarios": [
+    {
+      "id": "S01",
+      "title": "Turn a vague feature request into a buildable slice",
+      "prompt": "Add dashboards for customers so they can understand account health, but keep it simple and do not overbuild it.",
+      "context": "The repo has a React admin app, no product requirements document, three possible user roles, and no obvious owner for metric definitions. The agent must avoid inventing a large analytics system.",
+      "primarySkills": [
+        "using-supered",
+        "shape-the-task"
+      ],
+      "successCriteria": [
+        "Clarifies the target user, first workflow, and non-goals.",
+        "Produces a short brief that can be accepted or corrected.",
+        "Identifies the smallest useful dashboard slice before implementation."
+      ],
+      "expectedEvidence": [
+        "A concise task brief with assumptions called out.",
+        "A list of decisions that need user confirmation before code changes."
+      ]
+    },
+    {
+      "id": "S02",
+      "title": "Map a multi-file authentication change",
+      "prompt": "Add magic-link login to the existing app and make sure the old password login still works.",
+      "context": "The app has API routes, an email sender, session middleware, and browser tests. The request touches security-sensitive paths and must be broken into reviewable changes.",
+      "primarySkills": [
+        "make-a-map",
+        "prove-the-change"
+      ],
+      "successCriteria": [
+        "Lists affected files and ownership boundaries before editing.",
+        "Sequences backend, email, session, and UI work into small checkpoints.",
+        "Names verification commands for old and new login paths."
+      ],
+      "expectedEvidence": [
+        "A short execution map with ordered slices.",
+        "Verification notes covering both magic-link and password login."
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "Implement a narrow UI improvement without scope creep",
+      "prompt": "Make the settings page easier to scan and add a save confirmation when preferences change.",
+      "context": "The settings page is already used by customers, has mixed form components, and has a brittle screenshot test. The agent should improve the workflow without redesigning the app.",
+      "primarySkills": [
+        "build-in-slices"
+      ],
+      "successCriteria": [
+        "Starts with one visible behavior and one verification path.",
+        "Keeps layout and interaction edits separable.",
+        "Avoids unrelated visual redesign or component churn."
+      ],
+      "expectedEvidence": [
+        "A small diff grouped around the settings workflow.",
+        "Passing component or browser verification for the save confirmation."
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "Diagnose an intermittent checkout failure",
+      "prompt": "Checkout sometimes fails with a generic payment error, mostly on mobile Safari. Fix it.",
+      "context": "Logs show several possible causes: token refresh, double-submit, gateway declines, and a recent UI refactor. The agent must investigate before changing code.",
+      "primarySkills": [
+        "trace-the-fault"
+      ],
+      "successCriteria": [
+        "Separates symptom, reproduction attempts, and hypotheses.",
+        "Finds evidence for one root cause before patching.",
+        "Adds or updates a regression check for the observed failure."
+      ],
+      "expectedEvidence": [
+        "A fault trace showing ruled-out hypotheses.",
+        "A failing-then-passing check or a documented reproduction result."
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "Prove a production bug fix before claiming completion",
+      "prompt": "The export button is fixed now, right? Tell the customer we are done and include the exact proof that the filtered CSV download works.",
+      "context": "A prior agent changed CSV generation but did not run the browser workflow. The customer issue involves filters, permissions, and a downloaded file.",
+      "primarySkills": [
+        "prove-the-change"
+      ],
+      "successCriteria": [
+        "Refuses to claim completion from code changes alone.",
+        "Runs the relevant automated or manual export verification.",
+        "Reports the actual evidence and any untested risk."
+      ],
+      "expectedEvidence": [
+        "Fresh command output or browser verification notes.",
+        "A final status that distinguishes verified behavior from assumptions."
+      ]
+    },
+    {
+      "id": "S06",
+      "title": "Prepare a small public release",
+      "prompt": "Commit this library update, push it, tag a release, and make sure the public install instructions still work.",
+      "context": "The repo is public, has CI, a package manifest, generated screenshots, and possible uncommitted user files. The agent must not overwrite unrelated work.",
+      "primarySkills": [
+        "ship-the-work",
+        "prove-the-change"
+      ],
+      "successCriteria": [
+        "Checks the worktree and stages only intended files.",
+        "Runs release-relevant validation before tagging or publishing.",
+        "Reads back the public release or install path after shipping."
+      ],
+      "expectedEvidence": [
+        "Git status, commit, push, and release URLs.",
+        "Public install or package registry verification."
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "Choose the right workflow for a mixed request",
+      "prompt": "The app is slow, the nav is confusing, and we should probably add AI summaries. Can you just improve it?",
+      "context": "The request mixes performance, design, and new AI features. The agent needs to route the session instead of starting a broad refactor.",
+      "primarySkills": [
+        "using-supered",
+        "shape-the-task"
+      ],
+      "successCriteria": [
+        "Identifies separate work types and risks.",
+        "Chooses a first skill based on the highest uncertainty.",
+        "Offers a narrow next action instead of starting all tasks at once."
+      ],
+      "expectedEvidence": [
+        "A routing decision with the chosen Supered skill.",
+        "A short set of questions or assumptions that unblock the first slice."
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "Recover from a failing CI run",
+      "prompt": "CI is red after the last push. Please inspect the failed job, fix the real cause, and keep the intended feature intact.",
+      "context": "The failure could come from tests, packaging, linting, or browser setup. The agent must inspect the failed job and avoid local-only guesses.",
+      "primarySkills": [
+        "trace-the-fault",
+        "build-in-slices"
+      ],
+      "successCriteria": [
+        "Starts from the failing CI evidence.",
+        "Reproduces or narrows the failure locally before editing.",
+        "Makes the smallest fix that preserves the intended feature."
+      ],
+      "expectedEvidence": [
+        "CI log excerpt or command that identifies the failure point.",
+        "A passing local check and, when possible, a green rerun."
+      ]
+    },
+    {
+      "id": "S09",
+      "title": "Add tests around a risky data migration",
+      "prompt": "Add a migration that backfills missing organization slugs without breaking existing URLs.",
+      "context": "The database has legacy rows, duplicate display names, and routing code that assumes slugs are stable. The migration needs a reversible plan and proof.",
+      "primarySkills": [
+        "make-a-map",
+        "build-in-slices",
+        "prove-the-change"
+      ],
+      "successCriteria": [
+        "Maps schema, data, and route changes before implementation.",
+        "Builds the migration and app compatibility in separate slices.",
+        "Verifies duplicate and legacy-row cases explicitly."
+      ],
+      "expectedEvidence": [
+        "Migration test cases or dry-run output for edge cases.",
+        "Application route checks for old and new organization URLs."
+      ]
+    },
+    {
+      "id": "S10",
+      "title": "Hand off unfinished work honestly",
+      "prompt": "I need to stop here. Leave the branch in a state another engineer can continue from.",
+      "context": "The agent has partial implementation, one failing test, and two unverified assumptions. The handoff must be useful without pretending the work is done.",
+      "primarySkills": [
+        "ship-the-work",
+        "prove-the-change"
+      ],
+      "successCriteria": [
+        "Separates completed, partial, and unstarted work.",
+        "Lists failing or skipped checks clearly.",
+        "Leaves next steps and evidence paths for the next engineer."
+      ],
+      "expectedEvidence": [
+        "A handoff note with known status and blockers.",
+        "Command output showing the current failing or passing checks."
+      ]
+    }
+  ]
+}
