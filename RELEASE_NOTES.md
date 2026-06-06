@@ -1,3 +1,26 @@
+# Supered v0.5.0
+
+Upgrade Plan release.
+
+## Highlights
+
+- Added `supered upgrade --target <host>` to compare the running package, npm latest, and Install Health.
+- Added `supered upgrade --all` to inspect every supported host target from the current home directory.
+- Added `supered upgrade --apply` to repair local installs or delegate to `supered@latest` when a newer package exists.
+- Added JSON output for Upgrade Plans and apply results.
+- Extended Package Verification so the npm tarball proves `install`, `doctor`, `doctor --fix`, and `upgrade --apply` for every supported host target.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.4.0
 
 Install Repair release.

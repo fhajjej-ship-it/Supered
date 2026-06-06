@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
-import { mkdtemp, rm, stat } from "node:fs/promises";
+import { mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
@@ -10,6 +10,7 @@ import { dirname, join, resolve } from "node:path";
 const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const cli = resolve(root, "bin/supered.mjs");
+const packageVersion = JSON.parse(await readFile(join(root, "package.json"), "utf8")).version;
 
 test("CLI lists skills as stable JSON", async () => {
   const { stdout } = await execFileAsync("node", [cli, "skills", "--json"], { cwd: root });
@@ -33,6 +34,7 @@ test("CLI help and default install support every host target", async () => {
   assert.match(help, /codex\|claude\|cursor\|gemini\|opencode/);
   assert.match(help, /npx supered install --target codex/);
   assert.match(help, /supered doctor --target codex/);
+  assert.match(help, /supered upgrade --target codex/);
 
   for (const target of ["codex", "claude", "cursor", "gemini", "opencode"]) {
     const home = await mkdtemp(join(tmpdir(), `supered-cli-${target}-`));
@@ -113,4 +115,53 @@ test("CLI doctor --fix repairs broken installs and supports JSON", async () => {
   const result = JSON.parse(json);
   assert.equal(result.status, "ok");
   assert.deepEqual(result.fixedSkills, []);
+});
+
+test("CLI upgrade reports and applies Upgrade Plans", async () => {
+  const dest = await mkdtemp(join(tmpdir(), "supered-cli-upgrade-"));
+  await execFileAsync("node", [cli, "install", "--target", "codex", "--dest", dest], { cwd: root });
+  await writeFile(join(dest, "using-supered", "SKILL.md"), "# using-supered\n\nOld copy.\n");
+
+  const env = {
+    ...process.env,
+    SUPERED_LATEST_VERSION: packageVersion
+  };
+  const { stdout } = await execFileAsync("node", [cli, "upgrade", "--target", "codex", "--dest", dest], {
+    cwd: root,
+    env
+  });
+  assert.match(stdout, /Supered repair needed for codex/);
+  assert.match(stdout, /supered doctor --target codex --dest/);
+
+  const { stdout: applyStdout } = await execFileAsync(
+    "node",
+    [cli, "upgrade", "--target", "codex", "--dest", dest, "--apply"],
+    { cwd: root, env }
+  );
+  assert.match(applyStdout, /Supered upgrade applied for codex/);
+
+  const { stdout: json } = await execFileAsync(
+    "node",
+    [cli, "upgrade", "--target", "codex", "--dest", dest, "--json"],
+    { cwd: root, env }
+  );
+  const result = JSON.parse(json);
+  assert.equal(result.status, "current");
+});
+
+test("CLI upgrade can inspect all host targets", async () => {
+  const home = await mkdtemp(join(tmpdir(), "supered-cli-upgrade-all-"));
+  const { stdout } = await execFileAsync("node", [cli, "upgrade", "--all", "--json"], {
+    cwd: root,
+    env: {
+      ...process.env,
+      HOME: home,
+      SUPERED_LATEST_VERSION: packageVersion
+    }
+  });
+  const result = JSON.parse(stdout);
+
+  assert.equal(result.status, "issues");
+  assert.equal(result.targets.length, 5);
+  assert.ok(result.targets.every((target) => target.status === "repair-needed"));
 });

@@ -12,6 +12,8 @@ Supered is a small workflow product: a packaged set of agent skills, host instal
 
 **Install Repair** is the explicit `doctor --fix` operation that repairs missing or changed managed skill files while refusing unsafe symlink situations. It preserves unrelated destination files and reports what changed.
 
+**Upgrade Plan** is the comparison between the current Supered package, the latest npm package, and Install Health for one or more host targets. It reports whether to repair locally or delegate to `supered@latest`.
+
 **Package Verification** is the npm-facing check that proves the published tarball contains the CLI, plugin metadata, docs, logo, and skill bundle while excluding local-only test and artifact files.
 
 **Site Verification** is the browser-facing check that proves the documentation site renders, links to the install paths, and stays usable at desktop and mobile sizes.
@@ -29,6 +31,8 @@ Supered is a small workflow product: a packaged set of agent skills, host instal
 - Existing symlinked destination paths are rejected before copying.
 - Doctor checks report Install Health and provide a concrete reinstall command unless `--fix` is explicitly requested.
 - Install Repair may create a missing destination and copy managed Supered skill folders, but it must not repair through symlinks.
+- Upgrade Plan is informational unless `--apply` is explicitly requested.
+- Upgrade apply delegates to `supered@latest` when the running package is behind npm latest.
 
 ## Verification Invariants
 

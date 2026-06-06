@@ -6,6 +6,7 @@ import { installSuperedSkills } from "../lib/host-install.js";
 import { inspectSuperedInstall, repairSuperedInstall } from "../lib/install-doctor.js";
 import { listSkills } from "../lib/manifest.js";
 import { validateReleaseBundle } from "../lib/release-bundle.js";
+import { applyAllSuperedUpgrades, applySuperedUpgrade, planAllSuperedUpgrades, planSuperedUpgrade } from "../lib/upgrade-plan.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const [command, ...args] = process.argv.slice(2);
@@ -18,11 +19,14 @@ Usage:
   supered validate
   supered install --target <codex|claude|cursor|gemini|opencode> [--dest <path>]
   supered doctor --target <codex|claude|cursor|gemini|opencode> [--dest <path>] [--fix] [--json]
+  supered upgrade --target <codex|claude|cursor|gemini|opencode> [--dest <path>] [--apply] [--json]
+  supered upgrade --all [--apply] [--json]
 
 Examples:
   npx supered install --target codex
   npx supered install --target gemini --dest ~/.gemini/skills
   supered doctor --target codex
+  supered upgrade --target codex
 `);
 }
 
@@ -129,6 +133,110 @@ async function doctorCommand() {
   process.exitCode = 1;
 }
 
+function latestVersionOption() {
+  const index = args.indexOf("--latest-version");
+  return index === -1 ? undefined : args[index + 1];
+}
+
+function printUpgradeTarget(result) {
+  if (result.status === "current") {
+    console.log(`Supered upgrade check passed for ${result.target}: ${result.currentVersion} is current and the install is healthy.`);
+    return;
+  }
+  if (result.status === "ahead") {
+    console.log(`Supered local package ${result.currentVersion} is ahead of npm latest ${result.latestVersion} for ${result.target}.`);
+    return;
+  }
+  if (result.status === "upgrade-available") {
+    console.log(`Supered upgrade available for ${result.target}: ${result.currentVersion} -> ${result.latestVersion}.`);
+  } else {
+    console.log(`Supered repair needed for ${result.target}: package ${result.currentVersion} is ${result.packageStatus}.`);
+  }
+  if (result.issues.length > 0) {
+    for (const installIssue of result.issues) {
+      console.log(`- [${installIssue.code}] ${installIssue.message}`);
+    }
+  }
+  console.log(`Apply: ${result.applyCommand}`);
+}
+
+function printUpgradeApply(result) {
+  if (result.status === "delegated") {
+    console.log(`Supered upgrade delegated to latest package for ${result.target}.`);
+    if (result.stdout) {
+      process.stdout.write(result.stdout);
+    }
+    return;
+  }
+  if (result.status === "applied") {
+    console.log(`Supered upgrade applied for ${result.target} at ${result.dest}.`);
+    console.log(`${result.fixedSkills.length} skill${result.fixedSkills.length === 1 ? "" : "s"} repaired.`);
+    return;
+  }
+  if (result.status === "refused") {
+    console.log(`Supered upgrade refused ${result.refusedIssues.length} unsafe issue${result.refusedIssues.length === 1 ? "" : "s"} for ${result.target}.`);
+    for (const installIssue of result.refusedIssues) {
+      console.log(`- [${installIssue.code}] ${installIssue.message}`);
+    }
+    process.exitCode = 1;
+    return;
+  }
+  console.log(`Supered upgrade still has issues for ${result.target}.`);
+  process.exitCode = 1;
+}
+
+async function upgradeCommand() {
+  const targetIndex = args.indexOf("--target");
+  const destIndex = args.indexOf("--dest");
+  const target = targetIndex === -1 ? "" : args[targetIndex + 1];
+  const dest = destIndex === -1 ? undefined : args[destIndex + 1];
+  const json = args.includes("--json");
+  const apply = args.includes("--apply");
+  const all = args.includes("--all");
+  const latestVersion = latestVersionOption();
+
+  if (all && dest) {
+    throw new Error("Upgrade --all cannot use --dest.");
+  }
+  if (!all && (!target || (destIndex !== -1 && !dest))) {
+    throw new Error("Upgrade requires --target <codex|claude|cursor|gemini|opencode> or --all.");
+  }
+
+  const result = all
+    ? apply
+      ? await applyAllSuperedUpgrades({ root, latestVersion })
+      : await planAllSuperedUpgrades({ root, latestVersion })
+    : apply
+      ? await applySuperedUpgrade({ root, target, dest, latestVersion })
+      : await planSuperedUpgrade({ root, target, dest, latestVersion });
+
+  if (json) {
+    console.log(JSON.stringify(result, null, 2));
+    if (apply && (result.status === "issues" || result.status === "refused")) {
+      process.exitCode = 1;
+    }
+    return;
+  }
+
+  if (all) {
+    console.log(`Supered upgrade checked ${result.targets.length} targets; status: ${result.status}.`);
+    for (const targetResult of result.targets) {
+      console.log(`- ${targetResult.target}: ${targetResult.status}`);
+    }
+    if (apply && result.status === "issues") {
+      process.exitCode = 1;
+    }
+    return;
+  }
+
+  if (apply) {
+    printUpgradeApply(result);
+    return;
+  }
+
+  printUpgradeTarget(result);
+}
+
 try {
   if (!command || command === "help" || command === "--help") {
     printHelp();
@@ -140,6 +248,8 @@ try {
     await installCommand();
   } else if (command === "doctor") {
     await doctorCommand();
+  } else if (command === "upgrade") {
+    await upgradeCommand();
   } else {
     throw new Error(`Unknown command: ${command}`);
   }

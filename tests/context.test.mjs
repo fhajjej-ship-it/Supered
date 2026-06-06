@@ -13,6 +13,7 @@ test("CONTEXT documents Supered domain terms", async () => {
     "Host Install",
     "Install Health",
     "Install Repair",
+    "Upgrade Plan",
     "Package Verification",
     "Site Verification",
     "Eval Pack",

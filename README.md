@@ -42,6 +42,13 @@ Repair an install after reviewing the Doctor output:
 npx supered doctor --target codex --fix
 ```
 
+Check whether your package and install are current:
+
+```bash
+npx supered upgrade --target codex
+npx supered upgrade --target codex --apply
+```
+
 Or install the default Codex skill set with curl:
 
 ```bash
@@ -64,6 +71,7 @@ npm run validate
 node ./bin/supered.mjs install --target codex
 node ./bin/supered.mjs doctor --target codex
 node ./bin/supered.mjs doctor --target codex --fix
+node ./bin/supered.mjs upgrade --target codex
 ```
 
 For Claude or Gemini, replace `codex` with `claude` or `gemini`.
@@ -107,13 +115,14 @@ npm run verify-package
 node ./bin/supered.mjs skills --json
 node ./bin/supered.mjs doctor --target codex --json
 node ./bin/supered.mjs doctor --target codex --fix --json
+node ./bin/supered.mjs upgrade --all --json
 ```
 
 The validator checks package metadata, plugin metadata, and skill frontmatter so the public repo does not drift into a half-installable state.
 
 `npm run verify-site` opens the landing page in Chromium at desktop and mobile sizes, checks the logo and workflow text, and writes screenshots to `artifacts/site/`.
 
-`npm run verify-package` builds the npm tarball and verifies `npx`-style installs, Doctor checks, and Doctor repairs for every supported host target.
+`npm run verify-package` builds the npm tarball and verifies `npx`-style installs, Doctor checks, Doctor repairs, and Upgrade applies for every supported host target.
 
 ## Design Principles
 
