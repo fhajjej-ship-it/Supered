@@ -1,52 +1,19 @@
 #!/usr/bin/env node
-import { createServer } from "node:http";
-import { mkdir, readFile, stat } from "node:fs/promises";
-import { extname, join, normalize, resolve } from "node:path";
+import { mkdir, stat } from "node:fs/promises";
+import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 
 import { chromium } from "playwright";
+import { createStaticServer } from "./site-server.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const artifactsDir = join(root, "artifacts", "site");
-
-const contentTypes = {
-  ".css": "text/css; charset=utf-8",
-  ".html": "text/html; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".png": "image/png",
-  ".svg": "image/svg+xml"
-};
 
 function assert(condition, message) {
   if (!condition) {
     throw new Error(message);
   }
-}
-
-function resolveRequestPath(url) {
-  const pathname = new URL(url, "http://127.0.0.1").pathname;
-  const safePath = normalize(pathname).replace(/^(\.\.[/\\])+/, "");
-  const filePath = join(root, safePath === "/" ? "docs/index.html" : safePath);
-  return filePath.endsWith("/") ? join(filePath, "index.html") : filePath;
-}
-
-function createStaticServer() {
-  return createServer(async (request, response) => {
-    try {
-      const filePath = resolveRequestPath(request.url ?? "/");
-      const relativePath = normalize(filePath).slice(root.length);
-      assert(!relativePath.includes(".."), "Refusing to serve path outside project root");
-      const body = await readFile(filePath);
-      response.writeHead(200, {
-        "Content-Type": contentTypes[extname(filePath)] ?? "application/octet-stream"
-      });
-      response.end(body);
-    } catch (error) {
-      response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-      response.end(error.message);
-    }
-  });
 }
 
 async function listen(server) {
@@ -94,7 +61,7 @@ async function checkViewport(page, viewport, screenshotName) {
   assert(screenshotStat.size > 20_000, `Screenshot looks too small: ${screenshotName}`);
 }
 
-const server = createStaticServer();
+const server = createStaticServer(root);
 const browser = await chromium.launch({ headless: true });
 
 try {
