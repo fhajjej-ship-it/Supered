@@ -8,6 +8,8 @@ Supered is a small workflow product: a packaged set of agent skills, host instal
 
 **Host Install** is the operation that maps a host label to an install destination, validates the source skill tree, copies the Supered skill folders into the destination, and returns a structured install result. Command-line and shell installers are adapters around this behavior.
 
+**Install Health** is the status of an installed Supered Skill Bundle for one host target. It checks whether the destination exists, managed skill files are present, installed skill contents match the current bundle, and managed paths avoid symlinks.
+
 **Package Verification** is the npm-facing check that proves the published tarball contains the CLI, plugin metadata, docs, logo, and skill bundle while excluding local-only test and artifact files.
 
 **Site Verification** is the browser-facing check that proves the documentation site renders, links to the install paths, and stays usable at desktop and mobile sizes.
@@ -23,6 +25,7 @@ Supered is a small workflow product: a packaged set of agent skills, host instal
 - The installer owns only Supered skill folders and leaves unrelated destination files alone.
 - Source skill directories must contain `SKILL.md` and must not include symlinks.
 - Existing symlinked destination paths are rejected before copying.
+- Doctor checks report Install Health and provide a concrete reinstall command instead of modifying files.
 
 ## Verification Invariants
 

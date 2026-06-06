@@ -1,3 +1,26 @@
+# Supered v0.3.0
+
+Install Health release.
+
+## Highlights
+
+- Added `supered doctor --target <host>` to inspect installed Supered skills without modifying files.
+- Added JSON doctor output for automation with `supered doctor --target codex --json`.
+- Detects missing skill files, changed or outdated skill files, missing destinations, symlinked destinations, and symlinks inside managed skill folders.
+- Added Doctor coverage to Package Verification so the npm tarball proves both `install` and `doctor` for every supported host target.
+- Documented Install Health in `CONTEXT.md`, README, and install docs.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.2.1
 
 Architecture deepening release.

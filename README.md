@@ -30,6 +30,12 @@ Install with npx:
 npx supered install --target codex
 ```
 
+Check the install:
+
+```bash
+npx supered doctor --target codex
+```
+
 Or install the default Codex skill set with curl:
 
 ```bash
@@ -50,6 +56,7 @@ cd Supered
 npm test
 npm run validate
 node ./bin/supered.mjs install --target codex
+node ./bin/supered.mjs doctor --target codex
 ```
 
 For Claude or Gemini, replace `codex` with `claude` or `gemini`.
@@ -91,13 +98,14 @@ npm run smoke-install
 npm run verify-site
 npm run verify-package
 node ./bin/supered.mjs skills --json
+node ./bin/supered.mjs doctor --target codex --json
 ```
 
 The validator checks package metadata, plugin metadata, and skill frontmatter so the public repo does not drift into a half-installable state.
 
 `npm run verify-site` opens the landing page in Chromium at desktop and mobile sizes, checks the logo and workflow text, and writes screenshots to `artifacts/site/`.
 
-`npm run verify-package` builds the npm tarball and verifies `npx`-style installs for every supported host target.
+`npm run verify-package` builds the npm tarball and verifies `npx`-style installs plus Doctor checks for every supported host target.
 
 ## Design Principles
 

@@ -11,6 +11,7 @@ test("CONTEXT documents Supered domain terms", async () => {
   for (const term of [
     "Skill Bundle",
     "Host Install",
+    "Install Health",
     "Package Verification",
     "Site Verification",
     "Eval Pack",
