@@ -71,11 +71,11 @@
           <h2 id="install-title">Start from the repo.</h2>
           <p>Clone Supered, validate the bundle, then copy the skills into your agent host.</p>
         </div>
-        <pre><code>git clone https://github.com/fhajjej-ship-it/Supered.git
-cd Supered
+        <pre><code>curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | sh
+
+curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | SUPERED_TARGET=gemini sh
 npm test
-npm run validate
-node ./bin/supered.mjs install --target codex</code></pre>
+npm run validate</code></pre>
       </section>
     </main>
   </body>

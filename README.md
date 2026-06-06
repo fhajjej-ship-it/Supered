@@ -24,7 +24,19 @@ Website: https://fhajjej-ship-it.github.io/Supered/
 
 ## Quickstart
 
-Clone the repo, validate the bundle, then install the skills into the agent host you use.
+Install the default Codex skill set with one command:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | sh
+```
+
+Pick another host with `SUPERED_TARGET`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | SUPERED_TARGET=claude sh
+```
+
+Or clone the repo, validate the bundle, then install the skills into the agent host you use.
 
 ```bash
 git clone https://github.com/fhajjej-ship-it/Supered.git
@@ -35,6 +47,15 @@ node ./bin/supered.mjs install --target codex
 ```
 
 For Claude or Gemini, replace `codex` with `claude` or `gemini`.
+
+Host-specific notes:
+[Codex](docs/hosts/codex.md),
+[Claude](docs/hosts/claude.md),
+[Cursor](docs/hosts/cursor.md),
+[Gemini](docs/hosts/gemini.md),
+[OpenCode](docs/hosts/opencode.md).
+
+Marketplace readiness lives in [docs/marketplace-checklist.md](docs/marketplace-checklist.md).
 
 ## CLI
 

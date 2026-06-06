@@ -7,13 +7,15 @@
 - Seven core skills covering task shaping, planning, building, debugging, proving, and shipping.
 - CLI validation and smoke install checks.
 - GitHub Pages landing page.
+- One-line installer plus host-specific docs.
+- Browser site verification.
 
 ## v0.2
 
-- Package install options for common agent hosts.
-- More precise host-specific installation docs.
 - Example transcripts showing Supered workflows in practice.
 - A compatibility checklist for marketplace submission.
+- Marketplace packaging experiments for supported hosts.
+- Install troubleshooting guide for custom skill directories.
 
 ## v0.3
 

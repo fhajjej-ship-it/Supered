@@ -17,6 +17,16 @@ test("collectManifest reads package and plugin metadata", async () => {
   assert.equal(manifest.codexPlugin.skills, "./skills/");
 });
 
+test("package and host metadata versions stay aligned", async () => {
+  const manifest = await collectManifest(root);
+  const version = manifest.package.version;
+
+  assert.equal(manifest.codexPlugin.version, version);
+  assert.equal(manifest.claudePlugin.version, version);
+  assert.equal(manifest.cursorPlugin.version, version);
+  assert.equal(manifest.geminiExtension.version, version);
+});
+
 test("listSkills returns the shipped Supered skill library", async () => {
   const skills = await listSkills(root);
   const skillNames = skills.map((skill) => skill.name);

@@ -1,11 +1,9 @@
 # Installing Supered for OpenCode
 
-Clone this repository and copy `skills/` into the skills directory used by your OpenCode setup.
+Use the installer with the OpenCode target:
 
 ```bash
-git clone https://github.com/fhajjej-ship-it/Supered.git
-cd Supered
-npm test
+curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | SUPERED_TARGET=opencode sh
 ```
 
-Then point OpenCode at the local skill folders.
+If your OpenCode setup uses a custom skills directory, pass `--dest` or set `SUPERED_DEST`.

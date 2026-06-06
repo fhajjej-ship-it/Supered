@@ -49,6 +49,7 @@ test("launch artifacts include CI, roadmap, release notes, and preview metadata"
   assert.match(ci, /npm run verify-site/);
   assert.equal(packageJson.scripts["verify-site"], "node ./scripts/verify-site.mjs");
   assert.match(roadmap, /# Supered Roadmap/);
+  assert.match(releaseNotes, /# Supered v0\.1\.2/);
   assert.match(releaseNotes, /# Supered v0\.1\.1/);
   assert.match(releaseNotes, /# Supered v0\.1\.0/);
   assert.deepEqual(plugin.interface.screenshots, ["./docs/preview.svg"]);

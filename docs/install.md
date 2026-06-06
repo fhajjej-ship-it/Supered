@@ -2,6 +2,18 @@
 
 Supered ships plain skill folders plus lightweight plugin manifests.
 
+## One-line install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | sh
+```
+
+Set a host target:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | SUPERED_TARGET=gemini sh
+```
+
 ## Codex
 
 ```bash
