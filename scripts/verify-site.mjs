@@ -61,6 +61,22 @@ async function checkViewport(page, viewport, screenshotName) {
   assert(screenshotStat.size > 20_000, `Screenshot looks too small: ${screenshotName}`);
 }
 
+async function checkLegalPage(page, url, expectedTitle, expectedText) {
+  await page.goto(url, { waitUntil: "networkidle" });
+  const title = await page.title();
+  assert(title.includes(expectedTitle), `Unexpected legal page title: ${title}`);
+
+  const bodyText = await page.locator("body").innerText();
+  for (const text of expectedText) {
+    assert(bodyText.includes(text), `Missing legal page text: ${text}`);
+  }
+
+  const logoLoaded = await page.locator(".brand img").evaluate((img) => {
+    return img instanceof HTMLImageElement && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0;
+  });
+  assert(logoLoaded, `${expectedTitle} logo did not load`);
+}
+
 const server = createStaticServer(root);
 const browser = await chromium.launch({ headless: true });
 
@@ -72,6 +88,8 @@ try {
 
   await checkViewport(page, { width: 1440, height: 1000 }, "desktop.png");
   await checkViewport(page, { width: 390, height: 844 }, "mobile.png");
+  await checkLegalPage(page, `${url}privacy.html`, "Privacy", ["Data Collection", "does not collect personal data"]);
+  await checkLegalPage(page, `${url}terms.html`, "Terms", ["MIT License", "No Warranty"]);
 
   console.log(`Site verification passed: desktop and mobile screenshots saved in ${artifactsDir}.`);
 } finally {

@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 import {
+  CODEX_GLOBAL_SUBMISSION_DOC,
   CODEX_PLUGIN_BUNDLE_FILES,
   CODEX_PLUGIN_LISTING_DOC,
   CODEX_PUBLIC_MARKETPLACE_FILE,
@@ -31,6 +32,9 @@ test("Codex plugin listing metadata is complete and source-backed", async () => 
     "assets/supered-mark.svg",
     "docs/preview.svg",
     CODEX_PLUGIN_LISTING_DOC,
+    CODEX_GLOBAL_SUBMISSION_DOC,
+    "docs/privacy.html",
+    "docs/terms.html",
     "README.md"
   ]) {
     assert.ok(result.checked.includes(path), `${path} should be checked`);
@@ -47,4 +51,17 @@ test("Codex plugin listing docs explain public and local plugin paths", async ()
   assert.match(docs, /codex plugin add supered@supered/);
   assert.match(docs, /codex plugin add supered@personal/);
   assert.match(docs, /npx supered@latest install --target codex/);
+});
+
+test("global Codex submission packet includes review and compliance details", async () => {
+  const docs = await readFile(resolve(root, CODEX_GLOBAL_SUBMISSION_DOC), "utf8");
+  const plugin = JSON.parse(await readFile(resolve(root, ".codex-plugin/plugin.json"), "utf8"));
+
+  assert.equal(plugin.interface.privacyPolicyURL, "https://fhajjej-ship-it.github.io/Supered/privacy.html");
+  assert.equal(plugin.interface.termsOfServiceURL, "https://fhajjej-ship-it.github.io/Supered/terms.html");
+  assert.match(docs, /Codex Global Plugin Directory Submission/);
+  assert.match(docs, /supered@supered  installed, enabled  0\.6\.1/);
+  assert.match(docs, /Supered is skills-only/);
+  assert.match(docs, /does not request credentials/);
+  assert.match(docs, /does not include an MCP server/);
 });

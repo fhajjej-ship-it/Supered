@@ -26,6 +26,7 @@ Official references:
 
 Use this checklist before submitting or creating the plugin in Codex:
 
+- Use `docs/codex-global-listing-submission.md` as the review packet.
 - Confirm the GitHub repo is public: https://github.com/fhajjej-ship-it/Supered
 - Confirm npm is public: https://www.npmjs.com/package/supered
 - Run `npm run verify-codex-plugin`.
@@ -39,7 +40,7 @@ Use this checklist before submitting or creating the plugin in Codex:
 The public GitHub repo also contains a Codex marketplace manifest at `.agents/plugins/marketplace.json` and a plugin bundle at `plugins/supered`. That gives reviewers and early users a public install path while the official directory listing is pending:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref main
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.1
 codex plugin add supered@supered
 codex plugin list | grep 'supered@supered'
 ```

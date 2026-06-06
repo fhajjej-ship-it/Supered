@@ -9,12 +9,15 @@ Use this before submitting Supered to a host marketplace or plugin index.
 - [x] Product logo at `1.svg`.
 - [x] Preview image at `docs/preview.svg`.
 - [x] Landing page at `https://fhajjej-ship-it.github.io/Supered/`.
+- [x] Privacy page at `https://fhajjej-ship-it.github.io/Supered/privacy.html`.
+- [x] Terms page at `https://fhajjej-ship-it.github.io/Supered/terms.html`.
 - [x] CI workflow with tests, validation, smoke install, npm package verification, Codex plugin listing verification, and browser site verification.
 
 ## Host Metadata
 
 - [x] Codex metadata in `.codex-plugin/plugin.json`.
 - [x] Codex plugin listing notes in `docs/codex-plugin-listing.md`.
+- [x] Codex global submission packet in `docs/codex-global-listing-submission.md`.
 - [x] Public Codex Git marketplace in `.agents/plugins/marketplace.json`.
 - [x] Public Codex plugin bundle in `plugins/supered`.
 - [x] Claude metadata in `.claude-plugin/plugin.json`.

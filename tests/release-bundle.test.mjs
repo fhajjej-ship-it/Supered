@@ -23,6 +23,7 @@ test("Release Bundle validation owns ship-readiness checks", async () => {
     "docs/roadmap.md",
     "docs/marketplace-checklist.md",
     "docs/codex-plugin-listing.md",
+    "docs/codex-global-listing-submission.md",
     "docs/hosts/codex.md",
     "docs/hosts/claude.md",
     "docs/hosts/cursor.md",

@@ -1,3 +1,27 @@
+# Supered v0.6.1
+
+Global Codex submission packet release.
+
+## Highlights
+
+- Added `docs/codex-global-listing-submission.md` with reviewer-ready listing copy, install steps, verification evidence, security notes, and privacy details.
+- Added Supered-owned privacy and terms pages under the public site.
+- Updated Codex plugin metadata to point at the Supered privacy and terms pages.
+- Extended Codex plugin verification to check the global submission packet and compliance URLs.
+- Extended site verification to load the privacy and terms pages in Chromium.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-codex-plugin
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.6.0
 
 Public Codex marketplace release.
