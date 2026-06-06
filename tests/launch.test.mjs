@@ -39,12 +39,17 @@ test("launch artifacts include CI, roadmap, release notes, and preview metadata"
   const ci = await readFile(join(root, ".github", "workflows", "ci.yml"), "utf8");
   const roadmap = await readFile(join(root, "docs", "roadmap.md"), "utf8");
   const releaseNotes = await readFile(join(root, "RELEASE_NOTES.md"), "utf8");
+  const packageJson = JSON.parse(await readFile(join(root, "package.json"), "utf8"));
   const plugin = JSON.parse(await readFile(join(root, ".codex-plugin", "plugin.json"), "utf8"));
 
   assert.match(ci, /npm test/);
+  assert.match(ci, /npm ci/);
   assert.match(ci, /npm run validate/);
   assert.match(ci, /npm run smoke-install/);
+  assert.match(ci, /npm run verify-site/);
+  assert.equal(packageJson.scripts["verify-site"], "node ./scripts/verify-site.mjs");
   assert.match(roadmap, /# Supered Roadmap/);
+  assert.match(releaseNotes, /# Supered v0\.1\.1/);
   assert.match(releaseNotes, /# Supered v0\.1\.0/);
   assert.deepEqual(plugin.interface.screenshots, ["./docs/preview.svg"]);
 });

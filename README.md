@@ -42,10 +42,13 @@ For Claude or Gemini, replace `codex` with `claude` or `gemini`.
 npm run skills
 npm run validate
 npm run smoke-install
+npm run verify-site
 node ./bin/supered.mjs skills --json
 ```
 
 The validator checks package metadata, plugin metadata, and skill frontmatter so the public repo does not drift into a half-installable state.
+
+`npm run verify-site` opens the landing page in Chromium at desktop and mobile sizes, checks the logo and workflow text, and writes screenshots to `artifacts/site/`.
 
 ## Design Principles
 
