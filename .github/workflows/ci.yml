@@ -37,6 +37,9 @@ jobs:
       - name: Verify npm package
         run: npm run verify-package
 
+      - name: Verify Codex plugin listing
+        run: npm run verify-codex-plugin
+
       - name: Install browser
         run: npx playwright install --with-deps chromium
 

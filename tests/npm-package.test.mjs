@@ -24,6 +24,7 @@ test("package metadata is ready for public npm publishing", async () => {
   assert.equal(packageJson.publishConfig.access, "public");
   assert.equal(packageJson.bin.supered, "bin/supered.mjs");
   assert.equal(packageJson.scripts["verify-package"], "node ./scripts/verify-npm-package.mjs");
+  assert.equal(packageJson.scripts["verify-codex-plugin"], "node ./scripts/verify-codex-plugin.mjs");
   assert.deepEqual(packageJson.files, REQUIRED_PACKAGE_FILES);
 });
 

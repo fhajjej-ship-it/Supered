@@ -47,8 +47,10 @@ test("launch artifacts include CI, roadmap, release notes, and preview metadata"
   assert.match(ci, /npm run validate/);
   assert.match(ci, /npm run smoke-install/);
   assert.match(ci, /npm run verify-package/);
+  assert.match(ci, /npm run verify-codex-plugin/);
   assert.match(ci, /npm run verify-site/);
   assert.equal(packageJson.scripts["verify-site"], "node ./scripts/verify-site.mjs");
+  assert.equal(packageJson.scripts["verify-codex-plugin"], "node ./scripts/verify-codex-plugin.mjs");
   assert.match(roadmap, /# Supered Roadmap/);
   assert.match(releaseNotes, /# Supered v0\.1\.3/);
   assert.match(releaseNotes, /# Supered v0\.1\.2/);

@@ -9,11 +9,12 @@ Use this before submitting Supered to a host marketplace or plugin index.
 - [x] Product logo at `1.svg`.
 - [x] Preview image at `docs/preview.svg`.
 - [x] Landing page at `https://fhajjej-ship-it.github.io/Supered/`.
-- [x] CI workflow with tests, validation, smoke install, and browser site verification.
+- [x] CI workflow with tests, validation, smoke install, npm package verification, Codex plugin listing verification, and browser site verification.
 
 ## Host Metadata
 
 - [x] Codex metadata in `.codex-plugin/plugin.json`.
+- [x] Codex plugin listing notes in `docs/codex-plugin-listing.md`.
 - [x] Claude metadata in `.claude-plugin/plugin.json`.
 - [x] Cursor metadata in `.cursor-plugin/plugin.json`.
 - [x] Gemini metadata in `gemini-extension.json`.
@@ -34,4 +35,4 @@ Use this before submitting Supered to a host marketplace or plugin index.
 - Confirm marketplace-specific directory naming before submission.
 - Confirm each host's current skill or plugin packaging rules.
 - Keep screenshots and descriptions aligned with the shipped skill list.
-- Run `npm test`, `npm run validate`, `npm run smoke-install`, `npm run verify-package`, and `npm run verify-site` before submission.
+- Run `npm test`, `npm run validate`, `npm run smoke-install`, `npm run verify-package`, `npm run verify-codex-plugin`, and `npm run verify-site` before submission.

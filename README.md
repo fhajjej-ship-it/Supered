@@ -84,6 +84,7 @@ Host-specific notes:
 [OpenCode](docs/hosts/opencode.md).
 
 Marketplace readiness lives in [docs/marketplace-checklist.md](docs/marketplace-checklist.md).
+Codex plugin listing notes live in [docs/codex-plugin-listing.md](docs/codex-plugin-listing.md).
 
 ## Which Skill Should I Use?
 
@@ -112,6 +113,7 @@ npm run validate
 npm run smoke-install
 npm run verify-site
 npm run verify-package
+npm run verify-codex-plugin
 node ./bin/supered.mjs skills --json
 node ./bin/supered.mjs doctor --target codex --json
 node ./bin/supered.mjs doctor --target codex --fix --json
@@ -123,6 +125,8 @@ The validator checks package metadata, plugin metadata, and skill frontmatter so
 `npm run verify-site` opens the landing page in Chromium at desktop and mobile sizes, checks the logo and workflow text, and writes screenshots to `artifacts/site/`.
 
 `npm run verify-package` builds the npm tarball and verifies `npx`-style installs, Doctor checks, Doctor repairs, and Upgrade applies for every supported host target.
+
+`npm run verify-codex-plugin` checks that the Codex plugin manifest, listing assets, docs, and bundled skills are aligned for Codex plugin submission.
 
 ## Design Principles
 

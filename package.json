@@ -24,7 +24,8 @@
     "smoke-install": "node ./scripts/smoke-install.mjs",
     "verify-site": "node ./scripts/verify-site.mjs",
     "verify-package": "node ./scripts/verify-npm-package.mjs",
-    "prepublishOnly": "npm test && npm run validate && npm run smoke-install && npm run verify-package"
+    "verify-codex-plugin": "node ./scripts/verify-codex-plugin.mjs",
+    "prepublishOnly": "npm test && npm run validate && npm run smoke-install && npm run verify-package && npm run verify-codex-plugin"
   },
   "files": [
     ".claude-plugin/",
