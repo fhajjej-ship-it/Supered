@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Supered is a compact workflow kit for coding agents that shape, build, prove, and ship software changes.">
+    <title>Supered - Agent Workflow Kit</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Supered home">
+        <img src="../1.svg" alt="" width="36" height="36">
+        <span>Supered</span>
+      </a>
+      <nav>
+        <a href="#skills">Skills</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/fhajjej-ship-it/Supered">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Agent workflow kit</p>
+          <h1 id="hero-title">Supered</h1>
+          <p class="lede">Shape the task, build in slices, prove the change, and ship with a clean public handoff.</p>
+          <div class="actions" aria-label="Primary actions">
+            <a class="button primary" href="https://github.com/fhajjej-ship-it/Supered">View on GitHub</a>
+            <a class="button secondary" href="#install">Install</a>
+          </div>
+        </div>
+        <div class="hero-media" aria-label="Supered logo">
+          <img src="../1.svg" alt="Supered logo">
+        </div>
+      </section>
+
+      <section id="skills" class="workflow" aria-labelledby="workflow-title">
+        <div class="section-head">
+          <p class="eyebrow">Workflow</p>
+          <h2 id="workflow-title">Four moves, seven skills.</h2>
+        </div>
+        <div class="steps">
+          <article>
+            <span>01</span>
+            <h3>Shape</h3>
+            <p>Turn a rough request into a short, testable brief.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Build</h3>
+            <p>Work in small slices with checks that keep scope visible.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Prove</h3>
+            <p>Run fresh verification before making completion claims.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Ship</h3>
+            <p>Stage, commit, push, and hand off with public evidence.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="install" class="install" aria-labelledby="install-title">
+        <div>
+          <p class="eyebrow">Install</p>
+          <h2 id="install-title">Start from the repo.</h2>
+          <p>Clone Supered, validate the bundle, then copy the skills into your agent host.</p>
+        </div>
+        <pre><code>git clone https://github.com/fhajjej-ship-it/Supered.git
+cd Supered
+npm test
+npm run validate
+node ./bin/supered.mjs install --target codex</code></pre>
+      </section>
+    </main>
+  </body>
+</html>

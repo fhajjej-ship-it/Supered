@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "description": "A compact agent workflow kit for clarifying, building, verifying, and shipping software changes.",
   "type": "module",
+  "homepage": "https://fhajjej-ship-it.github.io/Supered/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fhajjej-ship-it/Supered.git"
+  },
   "bin": {
     "supered": "./bin/supered.mjs"
   },
   "scripts": {
     "test": "node --test",
     "validate": "node ./bin/supered.mjs validate",
-    "skills": "node ./bin/supered.mjs skills"
+    "skills": "node ./bin/supered.mjs skills",
+    "smoke-install": "node ./scripts/smoke-install.mjs"
   },
   "keywords": [
     "agent",

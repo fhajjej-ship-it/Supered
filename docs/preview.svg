@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Supered preview</title>
+  <desc id="desc">A preview card showing the Supered workflow: shape, build, prove, ship.</desc>
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <rect x="72" y="72" width="1136" height="576" rx="8" fill="#ffffff" stroke="#d6dee8" stroke-width="2"/>
+  <image href="../1.svg" x="104" y="104" width="168" height="168" preserveAspectRatio="xMidYMid meet"/>
+  <text x="312" y="158" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="800">Supered</text>
+  <text x="316" y="214" fill="#4b5563" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500">shape, build, prove, ship</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="112" y="354" width="236" height="170" rx="8" fill="#f8fafc" stroke="#d6dee8"/>
+    <rect x="380" y="354" width="236" height="170" rx="8" fill="#f8fafc" stroke="#d6dee8"/>
+    <rect x="648" y="354" width="236" height="170" rx="8" fill="#f8fafc" stroke="#d6dee8"/>
+    <rect x="916" y="354" width="236" height="170" rx="8" fill="#f8fafc" stroke="#d6dee8"/>
+    <text x="136" y="412" fill="#dc2626" font-size="22" font-weight="800">01</text>
+    <text x="404" y="412" fill="#dc2626" font-size="22" font-weight="800">02</text>
+    <text x="672" y="412" fill="#dc2626" font-size="22" font-weight="800">03</text>
+    <text x="940" y="412" fill="#dc2626" font-size="22" font-weight="800">04</text>
+    <text x="136" y="464" fill="#0f172a" font-size="34" font-weight="800">Shape</text>
+    <text x="404" y="464" fill="#0f172a" font-size="34" font-weight="800">Build</text>
+    <text x="672" y="464" fill="#0f172a" font-size="34" font-weight="800">Prove</text>
+    <text x="940" y="464" fill="#0f172a" font-size="34" font-weight="800">Ship</text>
+    <path d="M330 439h50" stroke="#0ea5a3" stroke-width="7" stroke-linecap="round"/>
+    <path d="M598 439h50" stroke="#0ea5a3" stroke-width="7" stroke-linecap="round"/>
+    <path d="M866 439h50" stroke="#0ea5a3" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>
