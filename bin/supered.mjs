@@ -1,19 +1,12 @@
 #!/usr/bin/env node
-import { cp, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { installSuperedSkills } from "../lib/host-install.js";
 import { listSkills, validateProject } from "../lib/manifest.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const [command, ...args] = process.argv.slice(2);
-const installTargets = {
-  codex: ".codex/skills",
-  claude: ".claude/skills",
-  cursor: ".cursor/skills",
-  gemini: ".gemini/skills",
-  opencode: ".opencode/skills"
-};
 
 function printHelp() {
   console.log(`Supered
@@ -54,29 +47,18 @@ async function validateCommand() {
   console.log(`Supered bundle is valid: ${result.skills.length} skills, ${result.checked.length} files checked.`);
 }
 
-function defaultInstallDest(target) {
-  const home = process.env.HOME;
-  if (!home) {
-    throw new Error("HOME is not set; pass --dest explicitly.");
-  }
-
-  if (installTargets[target]) return `${home}/${installTargets[target]}`;
-  throw new Error(`Unsupported target: ${target}`);
-}
-
 async function installCommand() {
   const targetIndex = args.indexOf("--target");
   const destIndex = args.indexOf("--dest");
   const target = targetIndex === -1 ? "" : args[targetIndex + 1];
-  const dest = destIndex === -1 ? defaultInstallDest(target) : args[destIndex + 1];
+  const dest = destIndex === -1 ? undefined : args[destIndex + 1];
 
-  if (!target || !dest) {
+  if (!target || (destIndex !== -1 && !dest)) {
     throw new Error("Install requires --target <codex|claude|cursor|gemini|opencode>.");
   }
 
-  await mkdir(dest, { recursive: true });
-  await cp(resolve(root, "skills"), dest, { recursive: true });
-  console.log(`Installed Supered skills for ${target} at ${dest}.`);
+  const result = await installSuperedSkills({ root, target, dest });
+  console.log(`Installed Supered skills for ${result.target} at ${result.dest}.`);
 }
 
 try {

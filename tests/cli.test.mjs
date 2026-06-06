@@ -48,3 +48,13 @@ test("CLI help and default install support every host target", async () => {
     await stat(join(home, targetDir, "skills", "using-supered", "SKILL.md"));
   }
 });
+
+test("CLI install allows a custom target label with an explicit destination", async () => {
+  const dest = await mkdtemp(join(tmpdir(), "supered-cli-custom-"));
+  const { stdout } = await execFileAsync("node", [cli, "install", "--target", "zed", "--dest", dest], {
+    cwd: root
+  });
+
+  assert.match(stdout, /Installed Supered skills for zed/);
+  await stat(join(dest, "using-supered", "SKILL.md"));
+});

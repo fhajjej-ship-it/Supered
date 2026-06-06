@@ -37,6 +37,20 @@ test("install.sh installs all skills from a local source directory", async () =>
   }
 });
 
+test("install.sh allows a custom target label with an explicit destination", async () => {
+  const dest = await mkdtemp(join(tmpdir(), "supered-installer-custom-"));
+  const { stdout } = await execFileAsync("sh", ["install.sh", "--target", "zed", "--dest", dest], {
+    cwd: root,
+    env: {
+      ...process.env,
+      SUPERED_SOURCE_DIR: root
+    }
+  });
+
+  assert.match(stdout, /Installed Supered for zed/);
+  await stat(join(dest, "using-supered", "SKILL.md"));
+});
+
 test("host docs cover every supported install target", async () => {
   const hosts = ["codex", "claude", "cursor", "gemini", "opencode"];
 

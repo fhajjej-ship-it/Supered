@@ -1,3 +1,25 @@
+# Supered v0.2.1
+
+Host Install deepening release.
+
+## Highlights
+
+- Added `CONTEXT.md` to define the project language for Skill Bundle, Host Install, Package Verification, Site Verification, Eval Pack, and Release Bundle.
+- Moved supported host targets and skill ordering into shared policy so installers and verification speak from one source of truth.
+- Added a structured Host Install module that copies only ordered Supered skills, preserves unrelated destination files, validates `SKILL.md` files, and rejects symlinked source or destination paths.
+- Kept the CLI as a thin adapter while allowing custom target labels when an explicit destination is provided.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.2.0
 
 Skill hardening release.
