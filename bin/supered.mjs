@@ -7,6 +7,13 @@ import { listSkills, validateProject } from "../lib/manifest.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const [command, ...args] = process.argv.slice(2);
+const installTargets = {
+  codex: ".codex/skills",
+  claude: ".claude/skills",
+  cursor: ".cursor/skills",
+  gemini: ".gemini/skills",
+  opencode: ".opencode/skills"
+};
 
 function printHelp() {
   console.log(`Supered
@@ -14,7 +21,11 @@ function printHelp() {
 Usage:
   supered skills [--json]
   supered validate
-  supered install --target <codex|claude|gemini> [--dest <path>]
+  supered install --target <codex|claude|cursor|gemini|opencode> [--dest <path>]
+
+Examples:
+  npx supered install --target codex
+  npx supered install --target gemini --dest ~/.gemini/skills
 `);
 }
 
@@ -49,9 +60,7 @@ function defaultInstallDest(target) {
     throw new Error("HOME is not set; pass --dest explicitly.");
   }
 
-  if (target === "codex") return `${home}/.codex/skills`;
-  if (target === "claude") return `${home}/.claude/skills`;
-  if (target === "gemini") return `${home}/.gemini/skills`;
+  if (installTargets[target]) return `${home}/${installTargets[target]}`;
   throw new Error(`Unsupported target: ${target}`);
 }
 
@@ -62,7 +71,7 @@ async function installCommand() {
   const dest = destIndex === -1 ? defaultInstallDest(target) : args[destIndex + 1];
 
   if (!target || !dest) {
-    throw new Error("Install requires --target <codex|claude|gemini>.");
+    throw new Error("Install requires --target <codex|claude|cursor|gemini|opencode>.");
   }
 
   await mkdir(dest, { recursive: true });

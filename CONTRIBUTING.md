@@ -10,6 +10,7 @@ Run the full check set before opening a pull request:
 npm test
 npm run validate
 npm run smoke-install
+npm run verify-package
 npm run verify-site
 ```
 

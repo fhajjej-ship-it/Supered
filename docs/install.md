@@ -2,6 +2,18 @@
 
 Supered ships plain skill folders plus lightweight plugin manifests.
 
+## Npx install
+
+```bash
+npx supered install --target codex
+```
+
+Choose another host:
+
+```bash
+npx supered install --target opencode
+```
+
 ## One-line install
 
 ```bash

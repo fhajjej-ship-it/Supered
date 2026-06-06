@@ -1,3 +1,26 @@
+# Supered v0.1.3
+
+Npm package release.
+
+## Highlights
+
+- Added public npm package metadata for `supered`.
+- Added `npx supered install --target codex` install path.
+- Added `npm run verify-package` to pack and test the npm tarball locally.
+- Added CI coverage for npm package verification.
+- Added npm package file filtering to keep tests, artifacts, and local dependencies out of the published tarball.
+- Extended the CLI default install target map to Codex, Claude, Cursor, Gemini, and OpenCode.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-site
+```
+
 # Supered v0.1.2
 
 Installer and submission-readiness release.

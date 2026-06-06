@@ -1,23 +1,47 @@
 {
   "name": "supered",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A compact agent workflow kit for clarifying, building, verifying, and shipping software changes.",
   "type": "module",
   "homepage": "https://fhajjej-ship-it.github.io/Supered/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fhajjej-ship-it/Supered.git"
+    "url": "git+https://github.com/fhajjej-ship-it/Supered.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fhajjej-ship-it/Supered/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "bin": {
-    "supered": "./bin/supered.mjs"
+    "supered": "bin/supered.mjs"
   },
   "scripts": {
     "test": "node --test",
     "validate": "node ./bin/supered.mjs validate",
     "skills": "node ./bin/supered.mjs skills",
     "smoke-install": "node ./scripts/smoke-install.mjs",
-    "verify-site": "node ./scripts/verify-site.mjs"
+    "verify-site": "node ./scripts/verify-site.mjs",
+    "verify-package": "node ./scripts/verify-npm-package.mjs",
+    "prepublishOnly": "npm test && npm run validate && npm run smoke-install && npm run verify-package"
   },
+  "files": [
+    ".claude-plugin/",
+    ".codex-plugin/",
+    ".cursor-plugin/",
+    ".opencode/",
+    "1.svg",
+    "assets/",
+    "bin/",
+    "docs/",
+    "gemini-extension.json",
+    "install.sh",
+    "lib/",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
   "keywords": [
     "agent",
     "coding-agents",
@@ -26,6 +50,9 @@
     "verification",
     "workflow"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "license": "MIT",
   "devDependencies": {
     "playwright": "^1.60.0"

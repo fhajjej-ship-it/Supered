@@ -72,6 +72,7 @@ test("README exposes the one-line installer and host docs", async () => {
   const readme = await readFile(join(root, "README.md"), "utf8");
 
   assert.match(readme, /curl -fsSL https:\/\/raw\.githubusercontent\.com\/fhajjej-ship-it\/Supered\/main\/install\.sh \| sh/);
+  assert.match(readme, /npx supered install --target codex/);
   assert.match(readme, /docs\/hosts\/codex\.md/);
   assert.match(readme, /docs\/marketplace-checklist\.md/);
 });

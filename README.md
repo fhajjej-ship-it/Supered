@@ -24,7 +24,13 @@ Website: https://fhajjej-ship-it.github.io/Supered/
 
 ## Quickstart
 
-Install the default Codex skill set with one command:
+Install with npx:
+
+```bash
+npx supered install --target codex
+```
+
+Or install the default Codex skill set with curl:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | sh
@@ -64,12 +70,15 @@ npm run skills
 npm run validate
 npm run smoke-install
 npm run verify-site
+npm run verify-package
 node ./bin/supered.mjs skills --json
 ```
 
 The validator checks package metadata, plugin metadata, and skill frontmatter so the public repo does not drift into a half-installable state.
 
 `npm run verify-site` opens the landing page in Chromium at desktop and mobile sizes, checks the logo and workflow text, and writes screenshots to `artifacts/site/`.
+
+`npm run verify-package` builds the npm tarball and verifies `npx`-style installs for every supported host target.
 
 ## Design Principles
 

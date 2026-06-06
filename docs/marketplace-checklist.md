@@ -22,6 +22,7 @@ Use this before submitting Supered to a host marketplace or plugin index.
 ## Install Documentation
 
 - [x] One-line installer in `install.sh`.
+- [x] Npm package metadata for `npx supered install --target codex`.
 - [x] Codex host docs in `docs/hosts/codex.md`.
 - [x] Claude host docs in `docs/hosts/claude.md`.
 - [x] Cursor host docs in `docs/hosts/cursor.md`.
@@ -33,4 +34,4 @@ Use this before submitting Supered to a host marketplace or plugin index.
 - Confirm marketplace-specific directory naming before submission.
 - Confirm each host's current skill or plugin packaging rules.
 - Keep screenshots and descriptions aligned with the shipped skill list.
-- Run `npm test`, `npm run validate`, `npm run smoke-install`, and `npm run verify-site` before submission.
+- Run `npm test`, `npm run validate`, `npm run smoke-install`, `npm run verify-package`, and `npm run verify-site` before submission.
