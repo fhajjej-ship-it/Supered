@@ -93,3 +93,24 @@ test("CLI doctor exits non-zero with fix instructions for broken installs", asyn
     }
   );
 });
+
+test("CLI doctor --fix repairs broken installs and supports JSON", async () => {
+  const dest = await mkdtemp(join(tmpdir(), "supered-cli-doctor-fix-"));
+  await execFileAsync("node", [cli, "install", "--target", "codex", "--dest", dest], { cwd: root });
+  await rm(join(dest, "using-supered", "SKILL.md"));
+
+  const { stdout } = await execFileAsync("node", [cli, "doctor", "--target", "codex", "--dest", dest, "--fix"], {
+    cwd: root
+  });
+  assert.match(stdout, /Supered doctor fixed 1 skill/);
+  await stat(join(dest, "using-supered", "SKILL.md"));
+
+  const { stdout: json } = await execFileAsync(
+    "node",
+    [cli, "doctor", "--target", "codex", "--dest", dest, "--fix", "--json"],
+    { cwd: root }
+  );
+  const result = JSON.parse(json);
+  assert.equal(result.status, "ok");
+  assert.deepEqual(result.fixedSkills, []);
+});

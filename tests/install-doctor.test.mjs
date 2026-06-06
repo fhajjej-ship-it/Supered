@@ -1,11 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, rm, symlink, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, stat, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { installSuperedSkills } from "../lib/host-install.js";
-import { inspectSuperedInstall } from "../lib/install-doctor.js";
+import { inspectSuperedInstall, repairSuperedInstall } from "../lib/install-doctor.js";
 import { SKILL_ORDER } from "../lib/supered-policy.js";
 
 async function fakeBundle() {
@@ -76,4 +76,46 @@ test("Install Doctor reports a symlinked destination path", async () => {
 
   assert.equal(result.status, "issues");
   assert.deepEqual(result.issues.map((issue) => issue.code), ["symlinked-destination"]);
+});
+
+test("Install Doctor repair fixes missing and changed Skill Bundle files", async () => {
+  const root = await fakeBundle();
+  const dest = await mkdtemp(join(tmpdir(), "supered-doctor-fix-dest-"));
+  await writeFile(join(dest, "unrelated.txt"), "keep me");
+  await installSuperedSkills({ root, target: "codex", dest });
+  await rm(join(dest, "using-supered", "SKILL.md"));
+  await writeFile(join(dest, "shape-the-task", "SKILL.md"), "# shape-the-task\n\nOld local copy.\n");
+
+  const result = await repairSuperedInstall({ root, target: "codex", dest });
+
+  assert.equal(result.status, "fixed");
+  assert.deepEqual(result.fixedSkills, ["using-supered", "shape-the-task"]);
+  assert.deepEqual(result.refusedIssues, []);
+  assert.deepEqual(result.after.issues, []);
+  await stat(join(dest, "unrelated.txt"));
+  assert.equal(await readFile(join(dest, "shape-the-task", "SKILL.md"), "utf8"), "# shape-the-task\n\nInstalled from the test bundle.\n");
+});
+
+test("Install Doctor repair creates a missing destination", async () => {
+  const root = await fakeBundle();
+  const dest = join(await mkdtemp(join(tmpdir(), "supered-doctor-fix-parent-")), "missing-skills");
+
+  const result = await repairSuperedInstall({ root, target: "codex", dest });
+
+  assert.equal(result.status, "fixed");
+  assert.ok(result.fixedSkills.includes("using-supered"));
+  await stat(join(dest, "using-supered", "SKILL.md"));
+});
+
+test("Install Doctor repair refuses unsafe symlink issues", async () => {
+  const root = await fakeBundle();
+  const dest = await mkdtemp(join(tmpdir(), "supered-doctor-fix-symlink-"));
+  await installSuperedSkills({ root, target: "codex", dest });
+  await symlink("/tmp", join(dest, "make-a-map", "linked"));
+
+  const result = await repairSuperedInstall({ root, target: "codex", dest });
+
+  assert.equal(result.status, "refused");
+  assert.deepEqual(result.fixedSkills, []);
+  assert.deepEqual(result.refusedIssues.map((issue) => issue.code), ["unsafe-symlink"]);
 });

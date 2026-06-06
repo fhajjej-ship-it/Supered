@@ -10,6 +10,8 @@ Supered is a small workflow product: a packaged set of agent skills, host instal
 
 **Install Health** is the status of an installed Supered Skill Bundle for one host target. It checks whether the destination exists, managed skill files are present, installed skill contents match the current bundle, and managed paths avoid symlinks.
 
+**Install Repair** is the explicit `doctor --fix` operation that repairs missing or changed managed skill files while refusing unsafe symlink situations. It preserves unrelated destination files and reports what changed.
+
 **Package Verification** is the npm-facing check that proves the published tarball contains the CLI, plugin metadata, docs, logo, and skill bundle while excluding local-only test and artifact files.
 
 **Site Verification** is the browser-facing check that proves the documentation site renders, links to the install paths, and stays usable at desktop and mobile sizes.
@@ -25,7 +27,8 @@ Supered is a small workflow product: a packaged set of agent skills, host instal
 - The installer owns only Supered skill folders and leaves unrelated destination files alone.
 - Source skill directories must contain `SKILL.md` and must not include symlinks.
 - Existing symlinked destination paths are rejected before copying.
-- Doctor checks report Install Health and provide a concrete reinstall command instead of modifying files.
+- Doctor checks report Install Health and provide a concrete reinstall command unless `--fix` is explicitly requested.
+- Install Repair may create a missing destination and copy managed Supered skill folders, but it must not repair through symlinks.
 
 ## Verification Invariants
 

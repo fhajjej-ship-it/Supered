@@ -48,6 +48,7 @@ test("Package Verification returns structured npx-style install proof", async ()
   assert.equal(result.packageName, "supered");
   assert.deepEqual(result.installedTargets, PACKAGE_TARGETS);
   assert.deepEqual(result.doctorTargets, PACKAGE_TARGETS);
+  assert.deepEqual(result.repairedTargets, PACKAGE_TARGETS);
   assert.deepEqual(result.installedSkills, SKILL_ORDER);
   assert.deepEqual(result.missingRequiredFiles, []);
   assert.deepEqual(result.excludedFileViolations, []);

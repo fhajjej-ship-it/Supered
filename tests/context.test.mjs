@@ -12,6 +12,7 @@ test("CONTEXT documents Supered domain terms", async () => {
     "Skill Bundle",
     "Host Install",
     "Install Health",
+    "Install Repair",
     "Package Verification",
     "Site Verification",
     "Eval Pack",

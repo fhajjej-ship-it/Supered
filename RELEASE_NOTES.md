@@ -1,3 +1,26 @@
+# Supered v0.4.0
+
+Install Repair release.
+
+## Highlights
+
+- Added `supered doctor --fix` to repair missing or changed Supered skill files after an Install Health check.
+- Preserves unrelated destination files while restoring managed Supered skill folders from the current package.
+- Refuses unsafe symlink situations instead of repairing through them.
+- Supports `--json` for repair results, including fixed skills and refused issues.
+- Extended Package Verification so the npm tarball proves `install`, `doctor`, and `doctor --fix` for every supported host target.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.3.0
 
 Install Health release.

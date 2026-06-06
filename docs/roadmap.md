@@ -20,6 +20,7 @@
 ## v0.3
 
 - Install Health checks through `supered doctor`.
+- Install Repair through `supered doctor --fix`.
 - Skill authoring guide with contribution tests.
 - Release automation for tags, notes, and metadata checks.
 - Optional templates for repo launch checklists.

@@ -8,5 +8,5 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
 const result = await verifyNpmPackage({ root });
 console.log(
-  `Npm package verification passed: ${result.installedSkills.length} skills installed and checked for ${result.installedTargets.length} targets.`
+  `Npm package verification passed: ${result.installedSkills.length} skills installed, checked, and repaired for ${result.installedTargets.length} targets.`
 );
