@@ -1,3 +1,25 @@
+# Supered v0.2.0
+
+Skill hardening release.
+
+## Highlights
+
+- Rebuilt all seven bundled skills as operational playbooks with triggers, inputs, procedures, output contracts, guardrails, failure modes, and quality gates.
+- Tightened skill descriptions so metadata stays trigger-only and the working instructions stay inside each skill body.
+- Added `docs/skill-design-principles.md` with current primary guidance from OpenAI and Anthropic.
+- Added automated skill-quality tests to prevent the library from drifting back into thin paragraph prompts.
+- Updated examples to use version-agnostic `supered@latest` package checks.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-site
+```
+
 # Supered v0.1.3
 
 Npm package release.
