@@ -1,0 +1,44 @@
+{
+  "name": "supered",
+  "version": "0.1.0",
+  "description": "A compact agent workflow kit for clarifying, building, verifying, and shipping software changes.",
+  "author": {
+    "name": "Farouk Hajjej",
+    "url": "https://github.com/fhajjej-ship-it"
+  },
+  "homepage": "https://github.com/fhajjej-ship-it/Supered",
+  "repository": "https://github.com/fhajjej-ship-it/Supered",
+  "license": "MIT",
+  "keywords": [
+    "coding-agents",
+    "skills",
+    "planning",
+    "debugging",
+    "verification",
+    "github"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Supered",
+    "shortDescription": "Small, evidence-first workflows for coding agents",
+    "longDescription": "Supered guides coding agents through intent shaping, small execution maps, sliced implementation, fault tracing, proof-based verification, and shipping.",
+    "developerName": "Farouk Hajjej",
+    "category": "Coding",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use Supered to help me shape and ship this feature.",
+      "Run the Supered verification flow on this change."
+    ],
+    "websiteURL": "https://github.com/fhajjej-ship-it/Supered",
+    "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+    "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
+    "brandColor": "#0EA5A3",
+    "composerIcon": "./assets/supered-mark.svg",
+    "logo": "./1.svg",
+    "screenshots": []
+  }
+}

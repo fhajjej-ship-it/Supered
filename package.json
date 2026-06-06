@@ -1,0 +1,23 @@
+{
+  "name": "supered",
+  "version": "0.1.0",
+  "description": "A compact agent workflow kit for clarifying, building, verifying, and shipping software changes.",
+  "type": "module",
+  "bin": {
+    "supered": "./bin/supered.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "validate": "node ./bin/supered.mjs validate",
+    "skills": "node ./bin/supered.mjs skills"
+  },
+  "keywords": [
+    "agent",
+    "coding-agents",
+    "skills",
+    "planning",
+    "verification",
+    "workflow"
+  ],
+  "license": "MIT"
+}

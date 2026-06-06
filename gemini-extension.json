@@ -1,0 +1,7 @@
+{
+  "name": "supered",
+  "version": "0.1.0",
+  "description": "A compact workflow kit for agentic coding sessions.",
+  "mcpServers": {},
+  "contextFileName": "GEMINI.md"
+}

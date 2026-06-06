@@ -1,0 +1,8 @@
+{
+  "name": "supered",
+  "version": "0.1.0",
+  "description": "Small, evidence-first workflows for coding agents.",
+  "homepage": "https://github.com/fhajjej-ship-it/Supered",
+  "license": "MIT",
+  "skills": "./skills/"
+}
