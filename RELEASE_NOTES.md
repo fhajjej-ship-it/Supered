@@ -1,3 +1,27 @@
+# Supered v0.6.0
+
+Public Codex marketplace release.
+
+## Highlights
+
+- Added a public Codex marketplace manifest at `.agents/plugins/marketplace.json`.
+- Added a public Codex plugin bundle at `plugins/supered` so users can add the GitHub repo as a Codex marketplace.
+- Added `npm run verify-codex-plugin` to prove the Codex manifest, public marketplace entry, mirrored plugin bundle, listing docs, assets, and shipped skills stay aligned.
+- Added CI coverage for Codex plugin listing readiness.
+- Documented the public Git marketplace path: `codex plugin marketplace add fhajjej-ship-it/Supered --ref main`.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-codex-plugin
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.5.0
 
 Upgrade Plan release.

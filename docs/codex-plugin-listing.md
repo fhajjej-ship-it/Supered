@@ -29,10 +29,22 @@ Use this checklist before submitting or creating the plugin in Codex:
 - Confirm the GitHub repo is public: https://github.com/fhajjej-ship-it/Supered
 - Confirm npm is public: https://www.npmjs.com/package/supered
 - Run `npm run verify-codex-plugin`.
-- Run the full release checks: `npm test`, `npm run validate`, `npm run smoke-install`, `npm run verify-package`, `npm run verify-site`.
+- Run the full release checks: `npm test`, `npm run validate`, `npm run smoke-install`, `npm run verify-package`, `npm run verify-codex-plugin`, `npm run verify-site`.
 - In Codex, open Plugins from the top-left menu and choose Create a new plugin if the workspace exposes that flow.
 - For a workspace plugin, use Workspace settings, then Apps, then test and publish according to the current Codex plugin help flow.
 - Use `.codex-plugin/plugin.json` as the source of truth for listing copy and assets.
+
+## Public Git Marketplace
+
+The public GitHub repo also contains a Codex marketplace manifest at `.agents/plugins/marketplace.json` and a plugin bundle at `plugins/supered`. That gives reviewers and early users a public install path while the official directory listing is pending:
+
+```bash
+codex plugin marketplace add fhajjej-ship-it/Supered --ref main
+codex plugin add supered@supered
+codex plugin list | grep 'supered@supered'
+```
+
+The marketplace name is `supered`; the plugin name is also `supered`.
 
 ## Local Codex Visibility
 

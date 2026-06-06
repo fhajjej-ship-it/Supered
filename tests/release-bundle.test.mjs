@@ -17,6 +17,7 @@ test("Release Bundle validation owns ship-readiness checks", async () => {
   assert.deepEqual(result.hostTargets, Object.keys(HOST_TARGETS));
   for (const path of [
     "package.json",
+    ".agents/plugins/marketplace.json",
     ".github/workflows/ci.yml",
     "RELEASE_NOTES.md",
     "docs/roadmap.md",

@@ -15,6 +15,8 @@ Use this before submitting Supered to a host marketplace or plugin index.
 
 - [x] Codex metadata in `.codex-plugin/plugin.json`.
 - [x] Codex plugin listing notes in `docs/codex-plugin-listing.md`.
+- [x] Public Codex Git marketplace in `.agents/plugins/marketplace.json`.
+- [x] Public Codex plugin bundle in `plugins/supered`.
 - [x] Claude metadata in `.claude-plugin/plugin.json`.
 - [x] Cursor metadata in `.cursor-plugin/plugin.json`.
 - [x] Gemini metadata in `gemini-extension.json`.

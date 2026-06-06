@@ -6,6 +6,8 @@ import { resolve } from "node:path";
 import {
   CODEX_PLUGIN_BUNDLE_FILES,
   CODEX_PLUGIN_LISTING_DOC,
+  CODEX_PUBLIC_MARKETPLACE_FILE,
+  CODEX_PUBLIC_PLUGIN_ROOT,
   validateCodexPluginListing
 } from "../lib/codex-plugin-listing.js";
 
@@ -23,6 +25,8 @@ test("Codex plugin listing metadata is complete and source-backed", async () => 
 
   for (const path of [
     ".codex-plugin/plugin.json",
+    CODEX_PUBLIC_MARKETPLACE_FILE,
+    `${CODEX_PUBLIC_PLUGIN_ROOT}/.codex-plugin/plugin.json`,
     "1.svg",
     "assets/supered-mark.svg",
     "docs/preview.svg",
@@ -39,6 +43,8 @@ test("Codex plugin listing docs explain public and local plugin paths", async ()
   assert.match(docs, /Codex plugin directory/);
   assert.match(docs, /Create a new plugin/);
   assert.match(docs, /Workspace settings/);
+  assert.match(docs, /codex plugin marketplace add fhajjej-ship-it\/Supered/);
+  assert.match(docs, /codex plugin add supered@supered/);
   assert.match(docs, /codex plugin add supered@personal/);
   assert.match(docs, /npx supered@latest install --target codex/);
 });

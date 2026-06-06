@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">Supered mark</title>
+  <desc id="desc">A teal square mark with an S-shaped route through three verified checkpoints.</desc>
+  <rect width="96" height="96" rx="18" fill="#0f172a"/>
+  <path d="M26 28h34c8 0 14 6 14 14s-6 14-14 14H40c-5 0-8 3-8 7s3 7 8 7h30" fill="none" stroke="#2dd4bf" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="27" cy="28" r="7" fill="#f8fafc"/>
+  <circle cx="60" cy="56" r="7" fill="#f8fafc"/>
+  <circle cx="70" cy="70" r="7" fill="#f8fafc"/>
+</svg>
