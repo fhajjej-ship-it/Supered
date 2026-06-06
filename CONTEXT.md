@@ -23,3 +23,9 @@ Supered is a small workflow product: a packaged set of agent skills, host instal
 - The installer owns only Supered skill folders and leaves unrelated destination files alone.
 - Source skill directories must contain `SKILL.md` and must not include symlinks.
 - Existing symlinked destination paths are rejected before copying.
+
+## Verification Invariants
+
+- Package Verification returns structured proof: package identity, tarball files, excluded-file violations, installed targets, and installed skills.
+- Eval Pack validation returns structured usefulness proof: scenario count, result count, average score, and covered skills.
+- Release Bundle validation is the top-level ship-readiness check; lower-level checks can stay specialized, but release readiness should be visible from one interface.

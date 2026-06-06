@@ -3,7 +3,8 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { installSuperedSkills } from "../lib/host-install.js";
-import { listSkills, validateProject } from "../lib/manifest.js";
+import { listSkills } from "../lib/manifest.js";
+import { validateReleaseBundle } from "../lib/release-bundle.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const [command, ...args] = process.argv.slice(2);
@@ -35,7 +36,7 @@ async function skillsCommand() {
 }
 
 async function validateCommand() {
-  const result = await validateProject(root);
+  const result = await validateReleaseBundle(root);
   if (result.errors.length > 0) {
     for (const error of result.errors) {
       console.error(`- ${error}`);

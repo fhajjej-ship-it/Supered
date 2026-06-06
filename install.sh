@@ -6,6 +6,13 @@ SUPERED_REF="${SUPERED_REF:-main}"
 SUPERED_TARGET="${SUPERED_TARGET:-codex}"
 SUPERED_SOURCE_DIR="${SUPERED_SOURCE_DIR:-}"
 SUPERED_DEST="${SUPERED_DEST:-}"
+SUPERED_SKILLS='using-supered
+shape-the-task
+make-a-map
+build-in-slices
+trace-the-fault
+prove-the-change
+ship-the-work'
 
 usage() {
   cat <<'EOF'
@@ -71,6 +78,23 @@ default_dest() {
   esac
 }
 
+reject_symlink() {
+  [ ! -L "$1" ] || die "Refusing to install symlink: $1"
+}
+
+reject_source_symlinks() {
+  reject_symlink "$1"
+  linked="$(find "$1" -type l -print -quit)"
+  [ -z "$linked" ] || die "Refusing to install symlink: $linked"
+}
+
+reject_destination_symlinks() {
+  [ ! -L "$dest" ] || die "Refusing to install into symlinked destination: $dest"
+  for skill in $SUPERED_SKILLS; do
+    [ ! -L "$dest/$skill" ] || die "Refusing to install into symlinked destination: $dest/$skill"
+  done
+}
+
 download_source() {
   tmp_dir="$(mktemp -d "${TMPDIR:-/tmp}/supered.XXXXXX")"
   archive="$tmp_dir/supered.tar.gz"
@@ -100,7 +124,19 @@ if [ -z "$dest" ]; then
   dest="$(default_dest)"
 fi
 
+for skill in $SUPERED_SKILLS; do
+  skill_dir="$source_dir/skills/$skill"
+  [ -d "$skill_dir" ] || die "Missing skill directory: $skill_dir"
+  reject_source_symlinks "$skill_dir"
+  [ -f "$skill_dir/SKILL.md" ] || die "Missing skill file: $skill_dir/SKILL.md"
+done
+
+reject_destination_symlinks
 mkdir -p "$dest"
-cp -R "$source_dir/skills/." "$dest/"
+reject_destination_symlinks
+
+for skill in $SUPERED_SKILLS; do
+  cp -R "$source_dir/skills/$skill" "$dest/"
+done
 
 printf 'Installed Supered for %s at %s\n' "$SUPERED_TARGET" "$dest"

@@ -3,27 +3,24 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 
+import { SCORING_DIMENSIONS, validateEvalPack } from "../lib/eval-pack.js";
+import { SKILL_ORDER } from "../lib/supered-policy.js";
+
 const root = resolve(import.meta.dirname, "..");
-const scoringDimensions = [
-  "clarity",
-  "actionability",
-  "guardrails",
-  "evidence",
-  "outcome"
-];
-const expectedSkills = [
-  "using-supered",
-  "shape-the-task",
-  "make-a-map",
-  "build-in-slices",
-  "trace-the-fault",
-  "prove-the-change",
-  "ship-the-work"
-];
 
 async function readJson(path) {
   return JSON.parse(await readFile(path, "utf8"));
 }
+
+test("Eval Pack validation returns a structured usefulness report", async () => {
+  const result = await validateEvalPack(root);
+
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.summary.scenarioCount, 10);
+  assert.equal(result.summary.resultCount, 10);
+  assert.ok(result.summary.averageScore >= 4.2);
+  assert.deepEqual(result.summary.coveredSkills, SKILL_ORDER);
+});
 
 test("eval scenario catalog covers realistic coding-agent work", async () => {
   const catalog = await readJson(join(root, "docs", "evals", "scenarios.json"));
@@ -31,7 +28,7 @@ test("eval scenario catalog covers realistic coding-agent work", async () => {
   assert.equal(catalog.product, "Supered");
   assert.equal(catalog.version, "0.1");
   assert.equal(catalog.scoring.maxScore, 5);
-  assert.deepEqual(catalog.scoring.dimensions, scoringDimensions);
+  assert.deepEqual(catalog.scoring.dimensions, SCORING_DIMENSIONS);
   assert.equal(catalog.scenarios.length, 10);
 
   const ids = new Set();
@@ -51,11 +48,11 @@ test("eval scenario catalog covers realistic coding-agent work", async () => {
 
     for (const skill of scenario.primarySkills) {
       coveredSkills.add(skill);
-      assert.ok(expectedSkills.includes(skill), `${scenario.id} references unknown skill ${skill}`);
+      assert.ok(SKILL_ORDER.includes(skill), `${scenario.id} references unknown skill ${skill}`);
     }
   }
 
-  for (const skill of expectedSkills) {
+  for (const skill of SKILL_ORDER) {
     assert.ok(coveredSkills.has(skill), `catalog does not exercise ${skill}`);
   }
 });
@@ -70,7 +67,7 @@ test("eval results show how usefulness is scored", async () => {
 
   for (const result of report.results) {
     assert.match(result.scenarioId, /^S\d{2}$/);
-    assert.deepEqual(Object.keys(result.scores).sort(), [...scoringDimensions].sort());
+    assert.deepEqual(Object.keys(result.scores).sort(), [...SCORING_DIMENSIONS].sort());
     for (const score of Object.values(result.scores)) {
       assert.ok(Number.isInteger(score), "scores must be integers");
       assert.ok(score >= 1 && score <= 5, "scores must be within the rubric");

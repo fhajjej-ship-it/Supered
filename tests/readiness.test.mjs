@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
-import { mkdtemp, readFile, stat } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, stat, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
@@ -11,6 +11,30 @@ import { SKILL_ORDER } from "../lib/manifest.js";
 
 const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+async function fakeShellBundle({ missingSkill, symlinkSkill } = {}) {
+  const bundleRoot = await mkdtemp(join(tmpdir(), "supered-shell-source-"));
+  const skillsDir = join(bundleRoot, "skills");
+  await mkdir(skillsDir);
+
+  for (const skill of SKILL_ORDER) {
+    const skillDir = join(skillsDir, skill);
+    await mkdir(skillDir);
+    if (skill !== missingSkill) {
+      await writeFile(join(skillDir, "SKILL.md"), `# ${skill}\n`);
+    }
+  }
+
+  const scratch = join(skillsDir, "scratch-skill");
+  await mkdir(scratch);
+  await writeFile(join(scratch, "SKILL.md"), "# scratch\n");
+
+  if (symlinkSkill) {
+    await symlink("/tmp", join(skillsDir, symlinkSkill, "linked"));
+  }
+
+  return bundleRoot;
+}
 
 test("install.sh documents one-line remote install and supports help", async () => {
   const installer = await readFile(join(root, "install.sh"), "utf8");
@@ -37,6 +61,23 @@ test("install.sh installs all skills from a local source directory", async () =>
   }
 });
 
+test("install.sh copies only ordered Supered skills", async () => {
+  const source = await fakeShellBundle();
+  const dest = await mkdtemp(join(tmpdir(), "supered-installer-ordered-"));
+  await execFileAsync("sh", ["install.sh", "--target", "codex", "--dest", dest], {
+    cwd: root,
+    env: {
+      ...process.env,
+      SUPERED_SOURCE_DIR: source
+    }
+  });
+
+  for (const skill of SKILL_ORDER) {
+    await stat(join(dest, skill, "SKILL.md"));
+  }
+  await assert.rejects(stat(join(dest, "scratch-skill", "SKILL.md")));
+});
+
 test("install.sh allows a custom target label with an explicit destination", async () => {
   const dest = await mkdtemp(join(tmpdir(), "supered-installer-custom-"));
   const { stdout } = await execFileAsync("sh", ["install.sh", "--target", "zed", "--dest", dest], {
@@ -49,6 +90,48 @@ test("install.sh allows a custom target label with an explicit destination", asy
 
   assert.match(stdout, /Installed Supered for zed/);
   await stat(join(dest, "using-supered", "SKILL.md"));
+});
+
+test("install.sh rejects unsafe Host Install inputs", async () => {
+  const missingSource = await fakeShellBundle({ missingSkill: "using-supered" });
+  const missingDest = await mkdtemp(join(tmpdir(), "supered-installer-missing-"));
+  await assert.rejects(
+    execFileAsync("sh", ["install.sh", "--target", "codex", "--dest", missingDest], {
+      cwd: root,
+      env: {
+        ...process.env,
+        SUPERED_SOURCE_DIR: missingSource
+      }
+    }),
+    /Missing skill file/
+  );
+
+  const symlinkSource = await fakeShellBundle({ symlinkSkill: "shape-the-task" });
+  const symlinkDest = await mkdtemp(join(tmpdir(), "supered-installer-symlink-"));
+  await assert.rejects(
+    execFileAsync("sh", ["install.sh", "--target", "codex", "--dest", symlinkDest], {
+      cwd: root,
+      env: {
+        ...process.env,
+        SUPERED_SOURCE_DIR: symlinkSource
+      }
+    }),
+    /Refusing to install symlink/
+  );
+
+  const realDest = await mkdtemp(join(tmpdir(), "supered-installer-real-dest-"));
+  const linkDest = join(await mkdtemp(join(tmpdir(), "supered-installer-link-parent-")), "skills-link");
+  await symlink(realDest, linkDest);
+  await assert.rejects(
+    execFileAsync("sh", ["install.sh", "--target", "codex", "--dest", linkDest], {
+      cwd: root,
+      env: {
+        ...process.env,
+        SUPERED_SOURCE_DIR: root
+      }
+    }),
+    /symlinked destination/
+  );
 });
 
 test("host docs cover every supported install target", async () => {
