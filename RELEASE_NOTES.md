@@ -1,3 +1,26 @@
+# Supered v0.6.2
+
+Plugin logo sizing release.
+
+## Highlights
+
+- Added `assets/supered-plugin-logo.svg`, a tight-cropped plugin logo that fills the Codex marketplace tile more clearly.
+- Updated the Codex plugin manifest and public marketplace mirror to use the new logo asset.
+- Kept `1.svg` unchanged for the website and source logo.
+- Extended Codex plugin verification to require the dedicated plugin logo asset.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-codex-plugin
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.6.1
 
 Global Codex submission packet release.

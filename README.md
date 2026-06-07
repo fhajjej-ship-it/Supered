@@ -90,7 +90,7 @@ Global Codex directory submission packet lives in [docs/codex-global-listing-sub
 Public Codex marketplace install:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.1
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.2
 codex plugin add supered@supered
 ```
 

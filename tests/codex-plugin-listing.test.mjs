@@ -28,7 +28,7 @@ test("Codex plugin listing metadata is complete and source-backed", async () => 
     ".codex-plugin/plugin.json",
     CODEX_PUBLIC_MARKETPLACE_FILE,
     `${CODEX_PUBLIC_PLUGIN_ROOT}/.codex-plugin/plugin.json`,
-    "1.svg",
+    "assets/supered-plugin-logo.svg",
     "assets/supered-mark.svg",
     "docs/preview.svg",
     CODEX_PLUGIN_LISTING_DOC,
@@ -60,7 +60,7 @@ test("global Codex submission packet includes review and compliance details", as
   assert.equal(plugin.interface.privacyPolicyURL, "https://fhajjej-ship-it.github.io/Supered/privacy.html");
   assert.equal(plugin.interface.termsOfServiceURL, "https://fhajjej-ship-it.github.io/Supered/terms.html");
   assert.match(docs, /Codex Global Plugin Directory Submission/);
-  assert.match(docs, /supered@supered  installed, enabled  0\.6\.1/);
+  assert.match(docs, /supered@supered  installed, enabled  0\.6\.2/);
   assert.match(docs, /Supered is skills-only/);
   assert.match(docs, /does not request credentials/);
   assert.match(docs, /does not include an MCP server/);

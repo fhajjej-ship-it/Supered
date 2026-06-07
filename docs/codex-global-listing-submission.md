@@ -9,12 +9,12 @@ This packet is for requesting a global Codex plugin directory listing for Supere
 - Category: `Coding`
 - Developer: Farouk Hajjej
 - Repository: https://github.com/fhajjej-ship-it/Supered
-- Release: https://github.com/fhajjej-ship-it/Supered/releases/tag/v0.6.1
+- Release: https://github.com/fhajjej-ship-it/Supered/releases/tag/v0.6.2
 - Npm: https://www.npmjs.com/package/supered
 - Website: https://fhajjej-ship-it.github.io/Supered/
 - Privacy policy: https://fhajjej-ship-it.github.io/Supered/privacy.html
 - Terms: https://fhajjej-ship-it.github.io/Supered/terms.html
-- Public Codex marketplace install: `codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.1`
+- Public Codex marketplace install: `codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.2`
 - Public plugin install: `codex plugin add supered@supered`
 
 ## Directory Listing Copy
@@ -43,7 +43,7 @@ Supered is intentionally skills-only. It does not need a connector, OAuth app, M
 - Main manifest: `.codex-plugin/plugin.json`
 - Public marketplace manifest: `.agents/plugins/marketplace.json`
 - Public marketplace plugin bundle: `plugins/supered`
-- Logo: `1.svg`
+- Logo: `assets/supered-plugin-logo.svg`
 - Composer icon: `assets/supered-mark.svg`
 - Screenshot: `docs/preview.svg`
 
@@ -52,7 +52,7 @@ Supered is intentionally skills-only. It does not need a connector, OAuth app, M
 Install from the public GitHub release:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.1
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.2
 codex plugin add supered@supered
 codex plugin list | grep 'supered@supered'
 ```
@@ -60,7 +60,7 @@ codex plugin list | grep 'supered@supered'
 Expected result:
 
 ```text
-supered@supered  installed, enabled  0.6.1
+supered@supered  installed, enabled  0.6.2
 ```
 
 Npm fallback:
@@ -86,9 +86,9 @@ npm audit --audit-level=high
 
 Additional public marketplace proof:
 
-- Clean temporary Codex home can add `fhajjej-ship-it/Supered --ref v0.6.1`.
+- Clean temporary Codex home can add `fhajjej-ship-it/Supered --ref v0.6.2`.
 - Clean temporary Codex home can install `supered@supered`.
-- Installed plugin reports version `0.6.1`.
+- Installed plugin reports version `0.6.2`.
 
 ## Security And Privacy Notes
 

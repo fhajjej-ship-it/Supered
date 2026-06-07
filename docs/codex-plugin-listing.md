@@ -18,7 +18,7 @@ Official references:
 - Website: https://fhajjej-ship-it.github.io/Supered/
 - Manifest: `.codex-plugin/plugin.json`
 - Skills path: `./skills/`
-- Logo: `1.svg`
+- Logo: `assets/supered-plugin-logo.svg`
 - Composer icon: `assets/supered-mark.svg`
 - Screenshot: `docs/preview.svg`
 
@@ -40,7 +40,7 @@ Use this checklist before submitting or creating the plugin in Codex:
 The public GitHub repo also contains a Codex marketplace manifest at `.agents/plugins/marketplace.json` and a plugin bundle at `plugins/supered`. That gives reviewers and early users a public install path while the official directory listing is pending:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.1
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.2
 codex plugin add supered@supered
 codex plugin list | grep 'supered@supered'
 ```

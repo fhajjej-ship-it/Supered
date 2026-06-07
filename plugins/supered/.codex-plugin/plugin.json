@@ -1,6 +1,6 @@
 {
   "name": "supered",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A compact agent workflow kit for clarifying, building, verifying, and shipping software changes.",
   "author": {
     "name": "Farouk Hajjej",
@@ -38,7 +38,7 @@
     "termsOfServiceURL": "https://fhajjej-ship-it.github.io/Supered/terms.html",
     "brandColor": "#0EA5A3",
     "composerIcon": "./assets/supered-mark.svg",
-    "logo": "./1.svg",
+    "logo": "./assets/supered-plugin-logo.svg",
     "screenshots": [
       "./docs/preview.svg"
     ]
