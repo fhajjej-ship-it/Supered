@@ -14,6 +14,9 @@ test("GitHub Pages landing page is present and product-focused", async () => {
 
   assert.match(html, /<title>Supered/);
   assert.match(html, /<img[^>]+src="\.\.\/1\.svg"/);
+  assert.match(html, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.6\.2/);
+  assert.match(html, /codex plugin add supered@supered/);
+  assert.match(html, /Global directory review packet/);
   assert.match(html, /Shape/);
   assert.match(html, /Build/);
   assert.match(html, /Prove/);
@@ -26,6 +29,9 @@ test("README has launch badges and a Pages link", async () => {
   assert.match(readme, /img\.shields\.io\/github\/v\/release\/fhajjej-ship-it\/Supered/);
   assert.match(readme, /github\.com\/fhajjej-ship-it\/Supered\/actions\/workflows\/ci\.yml/);
   assert.match(readme, /fhajjej-ship-it\.github\.io\/Supered/);
+  assert.match(readme, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.6\.2/);
+  assert.match(readme, /codex plugin add supered@supered/);
+  assert.match(readme, /docs\/launch-post\.md/);
 });
 
 test("smoke install copies the shipped skills into an isolated temp directory", async () => {

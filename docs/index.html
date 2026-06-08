@@ -85,21 +85,25 @@
             <span>Eval pack</span>
             <strong>How usefulness is scored</strong>
           </a>
+          <a href="https://github.com/fhajjej-ship-it/Supered/blob/main/docs/codex-global-listing-submission.md">
+            <span>Review</span>
+            <strong>Global directory review packet</strong>
+          </a>
         </div>
       </section>
 
       <section id="install" class="install" aria-labelledby="install-title">
         <div>
           <p class="eyebrow">Install</p>
-          <h2 id="install-title">Start from the repo.</h2>
-          <p>Clone Supered, validate the bundle, then copy the skills into your agent host.</p>
+          <h2 id="install-title">Install in Codex.</h2>
+          <p>Add the public GitHub marketplace source, then install Supered from that source. Use npx when you only want the standalone skill installer.</p>
         </div>
-        <pre><code>npx supered install --target codex
+        <pre><code>codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.2
+codex plugin add supered@supered
+codex plugin list | grep 'supered@supered'
 
-curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | sh
-
-curl -fsSL https://raw.githubusercontent.com/fhajjej-ship-it/Supered/main/install.sh | SUPERED_TARGET=gemini sh
-npm run verify-package</code></pre>
+npx supered@latest install --target codex
+npx supered@latest doctor --target codex</code></pre>
       </section>
     </main>
   </body>
