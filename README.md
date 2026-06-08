@@ -33,6 +33,8 @@ codex plugin add supered@supered
 
 This installs the public GitHub release. The global OpenAI Codex directory review packet lives in [docs/codex-global-listing-submission.md](docs/codex-global-listing-submission.md), and reusable launch copy lives in [docs/launch-post.md](docs/launch-post.md).
 
+Beta testers can use [BETA_INSTALL.md](BETA_INSTALL.md) for a 60-second install test and [docs/examples.md](docs/examples.md) for real workflow examples.
+
 Or install with npx:
 
 ```bash
@@ -114,6 +116,8 @@ Supered includes a public eval pack so the skills can be judged against realisti
 - [Scenario catalog](docs/evals/scenarios.json): 10 realistic coding-agent scenarios.
 - [Baseline results](docs/evals/baseline-results.json): scores across clarity, actionability, guardrails, evidence, and outcome.
 - [Eval report](docs/evals/README.md): how to use the scenarios to improve the skills.
+- [Beta install test](BETA_INSTALL.md): a fast install proof for outside testers.
+- [Examples](docs/examples.md): first prompts for debugging, shipping, and review workflows.
 
 ## CLI
 

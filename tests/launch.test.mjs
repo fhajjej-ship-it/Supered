@@ -17,6 +17,8 @@ test("GitHub Pages landing page is present and product-focused", async () => {
   assert.match(html, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.6\.2/);
   assert.match(html, /codex plugin add supered@supered/);
   assert.match(html, /Global directory review packet/);
+  assert.match(html, /60-second beta install test/);
+  assert.match(html, /Real workflow examples/);
   assert.match(html, /Shape/);
   assert.match(html, /Build/);
   assert.match(html, /Prove/);

@@ -34,8 +34,10 @@ test("npm pack includes installable assets and excludes local-only harness files
   const files = pack.files.map((file) => file.path);
 
   assert.ok(files.includes("bin/supered.mjs"));
+  assert.ok(files.includes("BETA_INSTALL.md"));
   assert.ok(files.includes("skills/using-supered/SKILL.md"));
   assert.ok(files.includes("install.sh"));
+  assert.ok(files.includes("docs/examples.md"));
   assert.ok(files.includes("docs/hosts/codex.md"));
   assert.ok(files.includes(".codex-plugin/plugin.json"));
   for (const prefix of EXCLUDED_PACKAGE_PREFIXES) {

@@ -34,6 +34,7 @@
     ".opencode/",
     "1.svg",
     "assets/",
+    "BETA_INSTALL.md",
     "bin/",
     "docs/",
     "gemini-extension.json",

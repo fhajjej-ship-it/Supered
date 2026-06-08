@@ -148,9 +148,12 @@ test("host docs cover every supported install target", async () => {
 test("repo has marketplace and contribution readiness artifacts", async () => {
   const checklist = await readFile(join(root, "docs", "marketplace-checklist.md"), "utf8");
   const contributing = await readFile(join(root, "CONTRIBUTING.md"), "utf8");
+  const betaInstall = await readFile(join(root, "BETA_INSTALL.md"), "utf8");
+  const examples = await readFile(join(root, "docs", "examples.md"), "utf8");
   const bug = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "bug_report.md"), "utf8");
   const skill = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "skill_request.md"), "utf8");
   const compatibility = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "compatibility_report.md"), "utf8");
+  const installFeedback = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "install_feedback.md"), "utf8");
   const config = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "config.yml"), "utf8");
 
   assert.match(checklist, /Codex/);
@@ -159,9 +162,16 @@ test("repo has marketplace and contribution readiness artifacts", async () => {
   assert.match(checklist, /Gemini/);
   assert.match(checklist, /OpenCode/);
   assert.match(contributing, /npm test/);
+  assert.match(betaInstall, /60-second/);
+  assert.match(betaInstall, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.6\.2/);
+  assert.match(betaInstall, /supered@supered  installed, enabled  0\.6\.2/);
+  assert.match(examples, /Use Supered to debug/);
+  assert.match(examples, /Use Supered to ship/);
   assert.match(bug, /Expected behavior/);
   assert.match(skill, /Workflow/);
   assert.match(compatibility, /Agent host/);
+  assert.match(installFeedback, /60-second install result/);
+  assert.match(installFeedback, /codex plugin list/);
   assert.match(config, /blank_issues_enabled: false/);
 });
 
@@ -172,4 +182,6 @@ test("README exposes the one-line installer and host docs", async () => {
   assert.match(readme, /npx supered install --target codex/);
   assert.match(readme, /docs\/hosts\/codex\.md/);
   assert.match(readme, /docs\/marketplace-checklist\.md/);
+  assert.match(readme, /BETA_INSTALL\.md/);
+  assert.match(readme, /docs\/examples\.md/);
 });
