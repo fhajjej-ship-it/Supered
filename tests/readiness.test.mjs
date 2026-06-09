@@ -150,6 +150,9 @@ test("repo has marketplace and contribution readiness artifacts", async () => {
   const contributing = await readFile(join(root, "CONTRIBUTING.md"), "utf8");
   const betaInstall = await readFile(join(root, "BETA_INSTALL.md"), "utf8");
   const examples = await readFile(join(root, "docs", "examples.md"), "utf8");
+  const reviewerFaq = await readFile(join(root, "docs", "reviewer-faq.md"), "utf8");
+  const demoScript = await readFile(join(root, "docs", "demo-script.md"), "utf8");
+  const feedbackLog = await readFile(join(root, "docs", "feedback-log.md"), "utf8");
   const bug = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "bug_report.md"), "utf8");
   const skill = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "skill_request.md"), "utf8");
   const compatibility = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "compatibility_report.md"), "utf8");
@@ -167,6 +170,13 @@ test("repo has marketplace and contribution readiness artifacts", async () => {
   assert.match(betaInstall, /supered@supered  installed, enabled  0\.6\.2/);
   assert.match(examples, /Use Supered to debug/);
   assert.match(examples, /Use Supered to ship/);
+  assert.match(reviewerFaq, /Reviewer FAQ/);
+  assert.match(reviewerFaq, /skills-only/);
+  assert.match(reviewerFaq, /does not collect plugin usage data/);
+  assert.match(demoScript, /5-minute demo/);
+  assert.match(demoScript, /Expected behavior/);
+  assert.match(feedbackLog, /Beta Feedback Log/);
+  assert.match(feedbackLog, /Install result/);
   assert.match(bug, /Expected behavior/);
   assert.match(skill, /Workflow/);
   assert.match(compatibility, /Agent host/);
@@ -184,4 +194,7 @@ test("README exposes the one-line installer and host docs", async () => {
   assert.match(readme, /docs\/marketplace-checklist\.md/);
   assert.match(readme, /BETA_INSTALL\.md/);
   assert.match(readme, /docs\/examples\.md/);
+  assert.match(readme, /docs\/reviewer-faq\.md/);
+  assert.match(readme, /docs\/demo-script\.md/);
+  assert.match(readme, /docs\/feedback-log\.md/);
 });
