@@ -1,3 +1,27 @@
+# Supered v0.6.3
+
+Reviewer proof pack release.
+
+## Highlights
+
+- Added a reviewer FAQ that explains Supered's skills-only design, privacy posture, capabilities, and review path.
+- Added a 5-minute demo script for showing the Supered workflow after installation.
+- Added a beta feedback log for tracking install results, user notes, and follow-up actions.
+- Mirrored the reviewer docs into the public Codex plugin bundle.
+- Updated README and site links so reviewers can reach the proof pack from the public surfaces.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-codex-plugin
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.6.2
 
 Plugin logo sizing release.

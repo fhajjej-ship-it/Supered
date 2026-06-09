@@ -7,7 +7,7 @@ Use this 60-second install test when asking someone to try Supered from a clean 
 Run:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.2
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.3
 codex plugin add supered@supered
 codex plugin list | grep 'supered@supered'
 ```
@@ -15,7 +15,7 @@ codex plugin list | grep 'supered@supered'
 Expected result:
 
 ```text
-supered@supered  installed, enabled  0.6.2
+supered@supered  installed, enabled  0.6.3
 ```
 
 Then start a Codex task and try:
