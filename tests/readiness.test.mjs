@@ -153,6 +153,7 @@ test("repo has marketplace and contribution readiness artifacts", async () => {
   const reviewerFaq = await readFile(join(root, "docs", "reviewer-faq.md"), "utf8");
   const demoScript = await readFile(join(root, "docs", "demo-script.md"), "utf8");
   const feedbackLog = await readFile(join(root, "docs", "feedback-log.md"), "utf8");
+  const betaOutreach = await readFile(join(root, "docs", "beta-outreach.md"), "utf8");
   const bug = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "bug_report.md"), "utf8");
   const skill = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "skill_request.md"), "utf8");
   const compatibility = await readFile(join(root, ".github", "ISSUE_TEMPLATE", "compatibility_report.md"), "utf8");
@@ -177,6 +178,10 @@ test("repo has marketplace and contribution readiness artifacts", async () => {
   assert.match(demoScript, /Expected behavior/);
   assert.match(feedbackLog, /Beta Feedback Log/);
   assert.match(feedbackLog, /Install result/);
+  assert.match(betaOutreach, /Beta Outreach Kit/);
+  assert.match(betaOutreach, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.6\.3/);
+  assert.match(betaOutreach, /Tester scorecard/);
+  assert.match(betaOutreach, /5 testers/);
   assert.match(bug, /Expected behavior/);
   assert.match(skill, /Workflow/);
   assert.match(compatibility, /Agent host/);
@@ -197,4 +202,5 @@ test("README exposes the one-line installer and host docs", async () => {
   assert.match(readme, /docs\/reviewer-faq\.md/);
   assert.match(readme, /docs\/demo-script\.md/);
   assert.match(readme, /docs\/feedback-log\.md/);
+  assert.match(readme, /docs\/beta-outreach\.md/);
 });

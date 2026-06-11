@@ -22,6 +22,7 @@ test("GitHub Pages landing page is present and product-focused", async () => {
   assert.match(html, /Reviewer FAQ/);
   assert.match(html, /5-minute demo script/);
   assert.match(html, /Feedback log/);
+  assert.match(html, /Beta outreach kit/);
   assert.match(html, /Shape/);
   assert.match(html, /Build/);
   assert.match(html, /Prove/);
@@ -37,6 +38,7 @@ test("README has launch badges and a Pages link", async () => {
   assert.match(readme, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.6\.3/);
   assert.match(readme, /codex plugin add supered@supered/);
   assert.match(readme, /docs\/launch-post\.md/);
+  assert.match(readme, /docs\/beta-outreach\.md/);
 });
 
 test("smoke install copies the shipped skills into an isolated temp directory", async () => {
