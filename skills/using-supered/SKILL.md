@@ -75,6 +75,40 @@ For tiny tasks, compress this into a sentence. For larger tasks, maintain a visi
 - The user can see what is happening without reading hidden reasoning.
 - Any final claim is backed by fresh evidence.
 
+## Activation Prompts
+
+```text
+Use Supered to choose the right workflow for this coding request.
+```
+
+```text
+Use Supered to route this messy task into the smallest useful next step.
+```
+
+```text
+Use Supered to decide whether this needs shaping, mapping, debugging, verification, or shipping.
+```
+
+## Output Examples
+
+Useful output:
+
+```text
+Outcome: Add a public beta feedback path for Supered.
+Selected skill: shape-the-task, then build-in-slices.
+Why this skill: the request mixes product direction, docs, tests, and publishing risk.
+Next action: add a failing readiness assertion for the missing feedback doc.
+Evidence needed: focused tests, full npm test, and live Pages check after push.
+```
+
+Weak output:
+
+```text
+I will use all Supered skills and improve everything.
+```
+
+The weak output is too broad, does not select a next workflow, and has no evidence target.
+
 ## Example
 
 Good:

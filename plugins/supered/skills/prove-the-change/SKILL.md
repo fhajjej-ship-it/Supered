@@ -72,6 +72,53 @@ For routine coding work, the final answer can be shorter, but it must still name
 - Failures are reported plainly.
 - The final answer distinguishes local, CI, and remote evidence.
 
+## Activation Prompts
+
+```text
+Use Supered to prove this change is actually ready.
+```
+
+```text
+Use Supered to map every completion claim to fresh evidence.
+```
+
+```text
+Use Supered to verify local, package, site, and remote claims separately.
+```
+
+## Output Examples
+
+Useful output:
+
+```text
+Claims checked:
+- Tests pass.
+- Package validation passes.
+- The live site shows the new link.
+Commands run:
+- npm test
+- npm run validate
+- curl -fsSL https://fhajjej-ship-it.github.io/Supered/ | rg "Beta outreach kit"
+Results:
+- npm test passed 64/64.
+- validate passed.
+- live site check returned the expected link text.
+Remote checks:
+- GitHub CI conclusion is success.
+Not checked:
+- npm publish was not run for this docs-only change.
+Conclusion:
+- The docs change is verified locally and remotely.
+```
+
+Weak output:
+
+```text
+Everything looks good.
+```
+
+The weak output makes a completion claim without commands, outputs, remote status, or unchecked scope.
+
 ## Example
 
 Good:

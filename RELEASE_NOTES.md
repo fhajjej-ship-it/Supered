@@ -1,3 +1,27 @@
+# Supered v0.7.0
+
+Skill hardening release.
+
+## Highlights
+
+- Added activation prompts to every bundled skill so users can trigger each workflow directly.
+- Added useful-output and weak-output examples to every bundled skill.
+- Tightened skill-quality tests so future skills must include activation prompts and output examples.
+- Mirrored the hardened skill bodies into the public Codex plugin bundle.
+- Updated public install snippets and reviewer docs for `v0.7.0`.
+
+## Verification
+
+```bash
+npm test
+npm run validate
+npm run smoke-install
+npm run verify-package
+npm run verify-codex-plugin
+npm run verify-site
+npm audit --audit-level=high
+```
+
 # Supered v0.6.3
 
 Reviewer proof pack release.

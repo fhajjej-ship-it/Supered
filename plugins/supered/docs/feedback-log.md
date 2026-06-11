@@ -6,7 +6,7 @@ Use this log to summarize beta install attempts and first-use feedback before a 
 
 - Target installs: 3 Codex plugin installs and 1 npm fallback install.
 - Current status: awaiting outside tester reports.
-- Next release candidate: `v0.6.3` only if feedback shows docs, install, or workflow polish is needed.
+- Next release candidate: `v0.7.0` only if feedback shows docs, install, or workflow polish is needed.
 
 ## Feedback Table
 

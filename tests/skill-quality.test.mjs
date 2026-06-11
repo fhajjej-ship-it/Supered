@@ -35,6 +35,11 @@ test("each Supered skill is a real playbook, not a paragraph prompt", async () =
     assert.match(skill.body, /Stop if|Do not|Never/i, `${skill.name} needs hard guardrails`);
     assert.match(skill.body, /Evidence|Verified|verification|proof/i, `${skill.name} needs evidence language`);
     assert.match(skill.body, /Example|Good|Bad|Scenario/i, `${skill.name} needs concrete examples or scenarios`);
+    assert.match(skill.body, /^## Activation Prompts/m, `${skill.name} needs activation prompts`);
+    assert.match(skill.body, /^## Output Examples/m, `${skill.name} needs output examples`);
+    assert.match(skill.body, /```text\nUse Supered to /, `${skill.name} needs at least one direct Supered prompt`);
+    assert.match(skill.body, /Useful output:/, `${skill.name} needs a useful output example`);
+    assert.match(skill.body, /Weak output:/, `${skill.name} needs a weak output counterexample`);
   }
 });
 

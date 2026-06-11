@@ -69,6 +69,41 @@ Next risk:
 - The diff is small enough to review.
 - Broader verification still passes before handoff.
 
+## Activation Prompts
+
+```text
+Use Supered to build this change in small verified slices.
+```
+
+```text
+Use Supered to add the check first, then implement the smallest passing change.
+```
+
+```text
+Use Supered to keep this docs, package, or site change reviewable.
+```
+
+## Output Examples
+
+Useful output:
+
+```text
+Slice: Add beta outreach kit visibility.
+Expected red check: tests fail because docs/beta-outreach.md is missing and README does not link it.
+Change: add the doc, mirror it into the plugin bundle, and link it from README and site.
+Green check: node --test tests/readiness.test.mjs tests/launch.test.mjs passes.
+Files touched: docs/beta-outreach.md, README.md, docs/index.html, mirrored plugin docs, tests.
+Next risk: full package and site verification.
+```
+
+Weak output:
+
+```text
+I updated the docs and will test later.
+```
+
+The weak output batches work without a red check, gives no proof, and does not name the next risk.
+
 ## Example
 
 Good:

@@ -27,7 +27,7 @@ Website: https://fhajjej-ship-it.github.io/Supered/
 Install Supered as a public Codex plugin:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.3
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.7.0
 codex plugin add supered@supered
 ```
 

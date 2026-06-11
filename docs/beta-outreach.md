@@ -1,6 +1,6 @@
 # Supered Beta Outreach Kit
 
-Use this kit to recruit beta testers and collect install evidence for Supered v0.6.3.
+Use this kit to recruit beta testers and collect install evidence for Supered v0.7.0.
 
 ## Target
 
@@ -17,7 +17,7 @@ I shipped Supered, a small workflow kit for coding agents. It adds local skills 
 Could you run a 5-minute beta install and tell me whether it is useful or confusing?
 
 Install:
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.3
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.7.0
 codex plugin add supered@supered
 
 Then try:
@@ -30,12 +30,12 @@ https://github.com/fhajjej-ship-it/Supered/issues/2
 ## Public Reply Template
 
 ```text
-I am collecting beta install feedback for Supered v0.6.3.
+I am collecting beta install feedback for Supered v0.7.0.
 
 It is a skills-only Codex plugin for small, evidence-first coding-agent workflows.
 
 Install:
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.3
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.7.0
 codex plugin add supered@supered
 
 Feedback:
@@ -47,7 +47,7 @@ https://github.com/fhajjej-ship-it/Supered/issues/2
 Ask each tester to run:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.3
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.7.0
 codex plugin add supered@supered
 codex plugin list | grep 'supered@supered'
 ```
@@ -55,7 +55,7 @@ codex plugin list | grep 'supered@supered'
 Expected result:
 
 ```text
-supered@supered  installed, enabled  0.6.3
+supered@supered  installed, enabled  0.7.0
 ```
 
 Then ask them to try one prompt:

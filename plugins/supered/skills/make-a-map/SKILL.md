@@ -69,6 +69,48 @@ Use compact bullets in chat. Use a formal checklist only for multi-step work.
 - The plan honors the user's scope.
 - The first step produces useful evidence, even if the implementation fails.
 
+## Activation Prompts
+
+```text
+Use Supered to make a short implementation map before editing.
+```
+
+```text
+Use Supered to sequence this approved change by risk and verification.
+```
+
+```text
+Use Supered to identify files, checks, stop conditions, and deferred work.
+```
+
+## Output Examples
+
+Useful output:
+
+```text
+Plan:
+1. Step: Add a failing test for the missing beta outreach link.
+   Files: tests/readiness.test.mjs, tests/launch.test.mjs
+   Check: focused node --test command fails.
+   Risk reduced: defines the shipped surface before docs are written.
+2. Step: Add the doc and public links.
+   Files: docs/beta-outreach.md, README.md, docs/index.html
+   Check: focused tests pass.
+3. Step: Verify package and site.
+   Files: release bundle and mirrored plugin docs
+   Check: npm test, validate, verify-codex-plugin, verify-site.
+Deferred: npm publish until a release version is explicitly prepared.
+Stop conditions: dirty unrelated files, failed package verification, or missing auth.
+```
+
+Weak output:
+
+```text
+Plan: update docs, run tests, push.
+```
+
+The weak output hides file areas, skips risk ordering, and does not define a meaningful stop condition.
+
 ## Example
 
 Good:

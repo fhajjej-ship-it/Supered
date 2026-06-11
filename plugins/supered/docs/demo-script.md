@@ -13,7 +13,7 @@ codex plugin list | grep 'supered@supered'
 Expected behavior:
 
 ```text
-supered@supered  installed, enabled  0.6.3
+supered@supered  installed, enabled  0.7.0
 ```
 
 ## 2. Start with a fuzzy task

@@ -69,6 +69,43 @@ Regression check:
 - The fix is narrower than the investigation.
 - Original symptom and at least one regression check pass.
 
+## Activation Prompts
+
+```text
+Use Supered to trace this fault from symptom to verified fix.
+```
+
+```text
+Use Supered to debug this failing command without guessing.
+```
+
+```text
+Use Supered to reproduce the issue, isolate the boundary, and recheck the original symptom.
+```
+
+## Output Examples
+
+Useful output:
+
+```text
+Symptom: npm publish fails after prepublish checks pass.
+Reproduction: npm publish --access public returns EOTP at the registry step.
+Known facts: local tests pass, dry-run pack succeeds, npm view does not show the new version.
+Hypothesis tested: registry write auth is missing, not package metadata.
+Root cause: npm account requires browser or OTP authentication for publish.
+Fix: run npm publish with web auth and complete the browser confirmation.
+Original symptom check: npm publish exits 0.
+Regression check: npm view supered version returns the published version.
+```
+
+Weak output:
+
+```text
+Probably npm is slow. Try again later.
+```
+
+The weak output guesses, does not classify the boundary, and never rechecks the original publish symptom.
+
 ## Example
 
 Good:

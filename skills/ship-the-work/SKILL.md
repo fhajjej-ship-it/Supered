@@ -74,6 +74,49 @@ Blocked or follow-up:
 - The final answer includes commit/release/package URLs when relevant.
 - The user knows exactly what, if anything, remains blocked.
 
+## Activation Prompts
+
+```text
+Use Supered to ship this work with a clean public handoff.
+```
+
+```text
+Use Supered to commit, push, and verify the remote result.
+```
+
+```text
+Use Supered to publish this release only after the matching commit and checks are proven.
+```
+
+## Output Examples
+
+Useful output:
+
+```text
+Changed:
+- Added docs/beta-outreach.md and public links.
+Checks before ship:
+- npm test, validate, verify-codex-plugin, verify-site.
+Commit:
+- 507291d Add beta outreach kit.
+Remote:
+- main pushed to GitHub and CI passed.
+Release/package/site:
+- Pages deployment passed and live site shows the new link.
+Post-ship verification:
+- raw GitHub doc and public site both return expected text.
+Blocked or follow-up:
+- No npm release was created for this docs-only change.
+```
+
+Weak output:
+
+```text
+Pushed. Done.
+```
+
+The weak output omits staged scope, verification, remote status, public URLs, and remaining release state.
+
 ## Example
 
 Good:

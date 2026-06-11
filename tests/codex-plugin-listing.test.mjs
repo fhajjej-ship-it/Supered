@@ -60,7 +60,7 @@ test("global Codex submission packet includes review and compliance details", as
   assert.equal(plugin.interface.privacyPolicyURL, "https://fhajjej-ship-it.github.io/Supered/privacy.html");
   assert.equal(plugin.interface.termsOfServiceURL, "https://fhajjej-ship-it.github.io/Supered/terms.html");
   assert.match(docs, /Codex Global Plugin Directory Submission/);
-  assert.match(docs, /supered@supered  installed, enabled  0\.6\.3/);
+  assert.match(docs, /supered@supered  installed, enabled  0\.7\.0/);
   assert.match(docs, /Supered is skills-only/);
   assert.match(docs, /does not request credentials/);
   assert.match(docs, /does not include an MCP server/);

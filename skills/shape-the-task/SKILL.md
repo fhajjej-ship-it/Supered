@@ -69,6 +69,43 @@ First slice:
 - The first slice is small enough to complete and test.
 - The user can correct the direction before major work begins.
 
+## Activation Prompts
+
+```text
+Use Supered to shape this vague request into a testable brief.
+```
+
+```text
+Use Supered to define the smallest useful version before we build.
+```
+
+```text
+Use Supered to separate must-haves, assumptions, risks, and acceptance checks.
+```
+
+## Output Examples
+
+Useful output:
+
+```text
+Outcome: Create a beta outreach kit for Supered.
+Audience: developers who use coding agents.
+Must have: outreach templates, install command, tester scorecard, issue link.
+Can defer: automated survey forms and analytics.
+Assumptions: testers can access Codex plugin commands or use the npm fallback.
+Risks: install friction, unclear feedback, quotes without permission.
+Acceptance checks: doc exists, README links it, site links it, tests pass.
+First slice: add failing tests for the missing doc and links.
+```
+
+Weak output:
+
+```text
+We should make beta outreach better and more professional.
+```
+
+The weak output keeps vague adjectives, does not name checks, and leaves the first build unclear.
+
 ## Example
 
 Good:

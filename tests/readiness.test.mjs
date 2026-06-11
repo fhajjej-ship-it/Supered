@@ -167,8 +167,8 @@ test("repo has marketplace and contribution readiness artifacts", async () => {
   assert.match(checklist, /OpenCode/);
   assert.match(contributing, /npm test/);
   assert.match(betaInstall, /60-second/);
-  assert.match(betaInstall, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.6\.3/);
-  assert.match(betaInstall, /supered@supered  installed, enabled  0\.6\.3/);
+  assert.match(betaInstall, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.7\.0/);
+  assert.match(betaInstall, /supered@supered  installed, enabled  0\.7\.0/);
   assert.match(examples, /Use Supered to debug/);
   assert.match(examples, /Use Supered to ship/);
   assert.match(reviewerFaq, /Reviewer FAQ/);
@@ -179,7 +179,7 @@ test("repo has marketplace and contribution readiness artifacts", async () => {
   assert.match(feedbackLog, /Beta Feedback Log/);
   assert.match(feedbackLog, /Install result/);
   assert.match(betaOutreach, /Beta Outreach Kit/);
-  assert.match(betaOutreach, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.6\.3/);
+  assert.match(betaOutreach, /codex plugin marketplace add fhajjej-ship-it\/Supered --ref v0\.7\.0/);
   assert.match(betaOutreach, /Tester scorecard/);
   assert.match(betaOutreach, /5 testers/);
   assert.match(bug, /Expected behavior/);

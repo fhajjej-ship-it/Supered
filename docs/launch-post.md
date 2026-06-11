@@ -7,7 +7,7 @@ Supered is public: a compact, skills-only workflow kit for coding agents that sh
 Install in Codex:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.3
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.7.0
 codex plugin add supered@supered
 ```
 
@@ -27,7 +27,7 @@ https://github.com/fhajjej-ship-it/Supered/blob/main/docs/codex-global-listing-s
 Reviewer install:
 
 ```bash
-codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.6.3
+codex plugin marketplace add fhajjej-ship-it/Supered --ref v0.7.0
 codex plugin add supered@supered
 codex plugin list | grep 'supered@supered'
 ```
